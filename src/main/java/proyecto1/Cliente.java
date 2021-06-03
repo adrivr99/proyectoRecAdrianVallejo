@@ -70,7 +70,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: " + "NIF: " + NIF + ", nombre: " + nombre + ", apellidos: " + apellidos + ", direccion: "
-                + direccion + ", ciudad: " + ciudad + ", pais: " + pais;
+        return "----------------------------------------------------------------------------------------------------------------------------\n" +
+                "Cliente: " + nombre + " " + apellidos + ", DNI:" + NIF +", domicilio en " + direccion + ", " + ciudad + ", " + pais +
+                "\n----------------------------------------------------------------------------------------------------------------------------";
     }
 }

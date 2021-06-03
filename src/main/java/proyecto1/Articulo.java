@@ -1,16 +1,16 @@
 package main.java.proyecto1;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Articulo extends  Producto{
     private double peso;
-    private Date fechaFabricacion;
+    private LocalDate fechaFabricacion;
 
     public Articulo() {
 
     }
 
-    public Articulo(double peso, Date fechaFabricacion, int producto, String nombre, double precio) {
+    public Articulo(double peso, LocalDate fechaFabricacion, int producto, String nombre, double precio) {
         super(producto, nombre, precio);
         this.peso = peso;
         this.fechaFabricacion = fechaFabricacion;
@@ -24,11 +24,11 @@ public class Articulo extends  Producto{
         this.peso = peso;
     }
 
-    public Date getFechaFabricacion() {
+    public LocalDate getFechaFabricacion() {
         return fechaFabricacion;
     }
 
-    public void setFechaFabricacion(Date fechaFabricacion) {
+    public void setFechaFabricacion(LocalDate fechaFabricacion) {
         this.fechaFabricacion = fechaFabricacion;
     }
 
