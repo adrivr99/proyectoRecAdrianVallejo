@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,8 +20,15 @@ public class Test {
 
         ArrayList<Cliente> listaCliente = ServicioLectura.CSVClientes("Clientes.csv");
         ArrayList<Articulo> listaArticulos = ServicioLectura.CSVArticulos("Articulos.csv");
-        //listaCliente.forEach(System.out::println);
-
+        ArrayList<Servicio> listaServicios = ServicioLectura.CSVServicios(("Servicios.csv"));
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        for (Producto producto : listaArticulos) {
+            listaProductos.add(producto);
+        }
+        for (Producto producto : listaServicios) {
+            listaProductos.add(producto);
+        }
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
 
         boolean salir = false;
         int opcionMenu = 0;
@@ -82,24 +90,55 @@ public class Test {
                                 listaCliente.forEach(System.out::println);
                                 System.out.println("Elige un cliente por su id para modificarlo");
                                 boolean exitModificarClientes = false;
-                                int opcionModificarClientes = 0;
-                                do {
-                                    String texto = teclado.next();
-                                    try {
-                                        opcionModificarClientes = Integer.parseInt(texto);
-                                    } catch (NumberFormatException e) {
-                                        System.out.println("Tiene que ser un número");
+                                String opcionModificarClientes = leerNif();
+                                // Bucle for para Modificar el cliente
+                                for (int i = 0; i < listaCliente.size(); i++) {
+                                    if (listaCliente.get(i).getNIF().equalsIgnoreCase(opcionModificarClientes)) {
+                                        System.out.println(listaCliente.get(i).getNombre() + " " + listaCliente.get(i).getApellidos());
+                                        String nif = leerNif();
+                                        listaCliente.get(i).setNIF(nif);
+                                        teclado.nextLine();
+                                        System.out.println("Introduce el nombre:");
+                                        String nombre = teclado.nextLine();
+                                        listaCliente.get(i).setNombre(nombre);
+                                        System.out.println("Introduce los apellidos");
+                                        String apellidos = teclado.nextLine();
+                                        listaCliente.get(i).setApellidos(apellidos);
+                                        System.out.println("Introduce la direccion (Calle, Número, Ciudad, País");
+                                        String direccion = teclado.nextLine();
+                                        listaCliente.get(i).setDireccion(direccion);
                                     }
-                                    if (opcionModificarClientes <= listaCliente.size() && opcionModificarClientes > 0) {
-                                        exitClientes = true;
-                                    }
-                                } while (!exitModificarClientes);
+                                }
                                 break;
                             case 3:
                                 System.out.println("---------Añadir Cliente---------");
+                                String nif = leerNif();
+                                teclado.nextLine();
+                                System.out.println("Introduce el nombre:");
+                                String nombre = teclado.nextLine();
+                                System.out.println("Introduce los apellidos");
+                                String apellidos = teclado.nextLine();
+                                System.out.println("Introduce la direccion (Calle, Número, Ciudad, País");
+                                String direccion = teclado.nextLine();
+                                Cliente cliente = new Cliente(nif, nombre, apellidos, direccion);
+                                listaCliente.add(cliente);
+                                if (listaCliente.contains(cliente)) {
+                                    System.out.println("Cliente añadido correctamente");
+                                } else {
+                                    System.out.println("No se ha podido añadir el cliente");
+                                }
                                 break;
                             case 4:
                                 System.out.println("---------Borrar Cliente---------");
+                                listaCliente.forEach(System.out::println);
+                                System.out.println("Elige el NIF del cliente de la lista a eliminar:");
+                                teclado.nextLine();
+                                String nifEliminar = teclado.nextLine();
+                                for (int i = 0; i < listaCliente.size(); i++) {
+                                    if (listaCliente.get(i).getNIF().equalsIgnoreCase(nifEliminar)) {
+                                        listaCliente.remove(i);
+                                    }
+                                }
                                 break;
                             case 5:
                                 salirClientes = true;
@@ -133,16 +172,86 @@ public class Test {
                         switch (opcionProductos) {
                             case 1:
                                 System.out.println("------Listado de Productos------");
-                                listaArticulos.forEach(System.out::println);
+                                listaProductos.forEach(System.out::println);
                                 break;
                             case 2:
                                 System.out.println("-------Modificar Producto-------");
+                                listaArticulos.forEach(System.out::println);
+                                listaServicios.forEach(System.out::println);
+                                System.out.println("Elige un producto por su id para modificarlo");
+                                String opcionModificarProductos = teclado.next();
+                                // Bucle for para mostrar el productos
+                                for (Producto listaProducto : listaProductos) {
+                                    if (listaProducto instanceof Servicio) {
+
+                                    }
+                                    if (listaProducto instanceof Articulo) {
+
+                                    }
+                                }
+
                                 break;
                             case 3:
                                 System.out.println("--------Añadir Producto---------");
+                                System.out.println("Que tipo de producto quieres crear? Articulo o Servicio?");
+                                teclado.nextLine();
+                                String crearProducto = teclado.nextLine();
+                                if (crearProducto.equalsIgnoreCase("articulo")){
+                                    System.out.println("--------Añadir Articulo---------");
+                                    int idProducto = listaProductos.get(listaProductos.size()-1).getProducto();
+                                    ++idProducto;
+                                    System.out.println("Introduce el nombre del producto: ");
+                                    String nombre = teclado.nextLine();
+                                    System.out.println("Introduce el precio:");
+                                    String precioString = teclado.nextLine();
+                                    double precio = Double.parseDouble(precioString);
+                                    System.out.println("Introduce el peso:");
+                                    String pesoString = teclado.nextLine();
+                                    double peso = Double.parseDouble(pesoString);
+                                    System.out.println("Introduce la fecha de fabricacion (yy-MM-dd)");
+                                    String fecha = teclado.nextLine();
+                                    LocalDate fechaFabricacion = LocalDate.parse(fecha);
+
+                                    Articulo articulo = new Articulo(peso, fechaFabricacion, idProducto, nombre, precio);
+                                    listaProductos.add(articulo);
+
+                                } else if (crearProducto.equalsIgnoreCase("servicio")){
+                                    System.out.println("--------Añadir Servicio---------");
+                                    int idProducto = listaProductos.get(listaProductos.size()-1).getProducto();
+                                    ++idProducto;
+                                    System.out.println("Introduce el nombre del producto: ");
+                                    String nombre = teclado.nextLine();
+                                    System.out.println("Introduce el precio:");
+                                    String precioString = teclado.nextLine();
+                                    double precio = Double.parseDouble(precioString);
+                                    System.out.println("Introduce la duración estimada:");
+                                    String duracionString = teclado.nextLine();
+                                    double duracion = Double.parseDouble(duracionString);
+                                    System.out.println("Introduce la fecha de Inicio (yy-MM-dd)");
+                                    String fechaIni = teclado.nextLine();
+                                    LocalDate fechaInicio = LocalDate.parse(fechaIni);
+                                    System.out.println("Introduce la fecha de Inicio (yy-MM-dd)");
+                                    String fechaFin = teclado.nextLine();
+                                    LocalDate fechaFinalizacion = LocalDate.parse(fechaFin);
+
+                                    Servicio servicio = new Servicio(duracion, fechaInicio, fechaFinalizacion, idProducto, nombre, precio);
+                                    listaProductos.add(servicio);
+
+                                }else{
+                                    System.out.println("Error 404");
+                                }
                                 break;
                             case 4:
                                 System.out.println("---------Borrar Producto--------");
+                                listaProductos.forEach(System.out::println);
+                                System.out.println("Elige el ID del producto de la lista a eliminar:");
+                                teclado.nextLine();
+                                int IDEliminar = teclado.nextInt();
+                                for (int i = 0; i < listaProductos.size(); i++) {
+                                    if (listaProductos.get(i).getProducto() == IDEliminar) {
+                                        listaProductos.remove(i);
+                                    }
+                                }
                                 break;
                             case 5:
                                 salirProductos = true;
@@ -258,5 +367,24 @@ public class Test {
             System.out.println("Seguramente la ruta está mal escrita o no existe");
         }
 
+    }
+
+    private static String leerNif() {
+        Scanner teclado = new Scanner(System.in);
+        String nif = null;
+        boolean entrada;
+        do {
+            System.out.println("Introduce el NIF");
+            String texto = teclado.next();
+            if (texto.length() == 9) {
+                nif = texto;
+                entrada = true;
+            } else {
+                System.out.println("Debes introducir 8 letras y un caracter");
+                entrada = false;
+            }
+
+        } while (!entrada);
+        return nif;
     }
 }

@@ -1,49 +1,49 @@
 package main.java.proyecto1;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Servicio extends Producto {
-    private int duracionEstimada;
-    private Date fechaComienzo;
-    private Date fechaFin;
+    private double duracionEstimada; // horas
+    private LocalDate fechaComienzo;
+    private LocalDate fechaFin;
 
     public Servicio() {
 
     }
 
-    public Servicio(int duracionEstimada, Date fechaComienzo, Date fechaFin, int producto, String nombre, double precio) {
+    public Servicio(double duracionEstimada, LocalDate fechaComienzo, LocalDate fechaFin, int producto, String nombre, double precio) {
         super(producto, nombre, precio);
         this.duracionEstimada = duracionEstimada;
         this.fechaComienzo = fechaComienzo;
         this.fechaFin = fechaFin;
     }
 
-    public int getDuracionEstimada() {
+    public double getDuracionEstimada() {
         return duracionEstimada;
     }
 
-    public void setDuracionEstimada(int duracionEstimada) {
+    public void setDuracionEstimada(double duracionEstimada) {
         this.duracionEstimada = duracionEstimada;
     }
 
-    public Date getFechaComienzo() {
+    public LocalDate getFechaComienzo() {
         return fechaComienzo;
     }
 
-    public void setFechaComienzo(Date fechaComienzo) {
+    public void setFechaComienzo(LocalDate fechaComienzo) {
         this.fechaComienzo = fechaComienzo;
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "Tipo Servicio, " + "duracionEstimada: " + duracionEstimada + ", fechaComienzo: " + fechaComienzo + ", fechaFin: " + fechaFin;
+        return super.toString() + ". Tipo Servicio, " + "duracionEstimada: " + duracionEstimada + ", fechaComienzo: " + fechaComienzo + ", fechaFin: " + fechaFin;
     }
 }

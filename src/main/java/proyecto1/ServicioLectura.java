@@ -3,6 +3,7 @@ package main.java.proyecto1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,8 +30,6 @@ public class ServicioLectura {
                 cliente.setNombre(tokens[1]);
                 cliente.setApellidos(tokens[2]);
                 cliente.setDireccion(tokens[3]);
-                cliente.setCiudad(tokens[4]);
-                cliente.setPais(tokens[5]);
                 listaClientes.add(cliente);
             }
             return listaClientes;
@@ -66,6 +65,39 @@ public class ServicioLectura {
                 listaArticulos.add(articulo);
             }
             return listaArticulos;
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static ArrayList <Servicio> CSVServicios(String idFichero){
+        // Variables para guardar los datos que se van leyendo
+        String[] tokens;
+        String linea;
+        ArrayList <Servicio> listaServicios = new ArrayList<>();
+
+        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
+        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
+        // las operaciones con el archivo
+        try (Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
+            // hasNextLine devuelve true mientras haya líneas por leer
+            while (datosFichero.hasNextLine()) {
+                // Guarda la línea completa en un String
+                linea = datosFichero.nextLine();
+                // Se guarda en el array de String cada elemento de la
+                // línea en función del carácter separador de campos del fichero CSV
+                tokens = linea.split(";");
+                Servicio servicio = new Servicio();
+                servicio.setDuracionEstimada(Double.parseDouble(tokens[0]) );
+                servicio.setFechaComienzo(LocalDate.parse(tokens[1]));
+                servicio.setFechaFin(LocalDate.parse(tokens[2]));
+                servicio.setProducto(Integer.parseInt(tokens[3]));
+                servicio.setNombre(tokens[4]);
+                servicio.setPrecio(Double.parseDouble(tokens[5]));
+                listaServicios.add(servicio);
+            }
+            return listaServicios;
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             return null;

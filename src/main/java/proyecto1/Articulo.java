@@ -34,6 +34,6 @@ public class Articulo extends  Producto{
 
     @Override
     public String toString() {
-        return super.toString() + "Tipo Articulo " + " peso: " + peso + ", fechaFabricacion: " + fechaFabricacion;
+        return super.toString() + ". Tipo Articulo " + " peso: " + peso + ", fechaFabricacion: " + fechaFabricacion;
     }
 }

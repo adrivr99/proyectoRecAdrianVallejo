@@ -5,19 +5,15 @@ public class Cliente {
     private String nombre;
     private String apellidos;
     private String direccion;
-    private String ciudad;
-    private String pais;
 
     public Cliente() {
     }
 
-    public Cliente(String NIF, String nombre, String apellidos, String direccion, String ciudad, String pais) {
+    public Cliente(String NIF, String nombre, String apellidos, String direccion) {
         this.NIF = NIF;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
-        this.ciudad = ciudad;
-        this.pais = pais;
     }
 
     public String getNIF() {
@@ -52,26 +48,10 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
     @Override
     public String toString() {
-        return "----------------------------------------------------------------------------------------------------------------------------\n" +
-                "Cliente: " + nombre + " " + apellidos + ", DNI:" + NIF +", domicilio en " + direccion + ", " + ciudad + ", " + pais +
-                "\n----------------------------------------------------------------------------------------------------------------------------";
+        return "----------------------------------------------------------------------------------------------------------------------------\n"+
+                "Cliente: " + nombre + " " + apellidos + ", DNI:" + NIF + ", domicilio: " + direccion + " \n" +
+                "----------------------------------------------------------------------------------------------------------------------------";
     }
 }
