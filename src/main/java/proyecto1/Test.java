@@ -9,6 +9,7 @@ import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -160,20 +161,17 @@ public class Test {
                                 System.out.println("Elige un producto por su id para modificarlo");
                                 int IDModificar = teclado.nextInt();
                                 for (int i = 0; i < listaProductos.size(); i++) {
-                                    if (listaProductos.get(i).getProducto() == IDModificar){
+                                    if (listaProductos.get(i).getProducto() == IDModificar) {
                                         System.out.println("Producto: " + listaProductos.get(i).getNombre());
                                         int idProducto = listaProductos.get(i).getProducto();
-                                        //boolean exitModificar = false;
-                                        //do{
-                                        if (listaProductos.get(i) instanceof Articulo){
+                                        if (listaProductos.get(i) instanceof Articulo) {
                                             listaProductos.remove(listaProductos.get(i));
                                             Articulo articulo = new Articulo();
                                             articulo.addArticulo(articulo);
                                             articulo.setProducto(idProducto);
                                             // Añadimos el articulo en la misma posición en la que estabas
                                             listaProductos.add(i, articulo);
-                                            //exitModificar = true;
-                                        } else if (listaProductos.get(i) instanceof Servicio){
+                                        } else if (listaProductos.get(i) instanceof Servicio) {
                                             listaProductos.remove(listaProductos.get(i));
                                             Servicio servicio = new Servicio();
                                             servicio.addServicio(servicio);
@@ -181,9 +179,7 @@ public class Test {
                                             // Añadimos el servicio
                                             // en la misma posición en la que estabas
                                             listaProductos.add(i, servicio);
-                                            //exitModificar = true;
                                         }
-                                        //}while(!exitModificar);
                                     }
                                 }
 
@@ -193,9 +189,9 @@ public class Test {
                                 System.out.println("Que tipo de producto quieres crear? Articulo o Servicio?");
                                 teclado.nextLine();
                                 String crearProducto = teclado.nextLine();
-                                if (crearProducto.equalsIgnoreCase("articulo")){
+                                if (crearProducto.equalsIgnoreCase("articulo")) {
                                     System.out.println("--------Añadir Articulo---------");
-                                    int idProducto = listaProductos.get(listaProductos.size()-1).getProducto();
+                                    int idProducto = listaProductos.get(listaProductos.size() - 1).getProducto();
                                     ++idProducto;
                                     Articulo articulo = new Articulo();
                                     articulo.addArticulo(articulo);
@@ -206,9 +202,9 @@ public class Test {
                                     } else {
                                         System.out.println("No se ha podido añadir el Artículo");
                                     }
-                                } else if (crearProducto.equalsIgnoreCase("servicio")){
+                                } else if (crearProducto.equalsIgnoreCase("servicio")) {
                                     System.out.println("--------Añadir Servicio---------");
-                                    int idProducto = listaProductos.get(listaProductos.size()-1).getProducto();
+                                    int idProducto = listaProductos.get(listaProductos.size() - 1).getProducto();
                                     ++idProducto;
                                     Servicio servicio = new Servicio();
                                     servicio.addServicio(servicio);
@@ -219,7 +215,7 @@ public class Test {
                                     } else {
                                         System.out.println("No se ha podido añadir el Servicio");
                                     }
-                                }else{
+                                } else {
                                     System.out.println("Error 404");
                                 }
 
@@ -243,52 +239,85 @@ public class Test {
                     } while (!salirProductos);
                     break;
                 case 3:
-                    boolean salirPedidos;
-                    System.out.println("-------------PEDIDOS------------");
-                    System.out.println("1. Consultar Pedidos");
-                    System.out.println("2. Modificar Pedidos");
-                    System.out.println("3. Añadir Pedidos");
-                    System.out.println("4. Borrar Pedidos");
-                    System.out.println("5. Salir");
-                    System.out.println("--------------------------------");
+                    boolean salirPedidos = false;
                     int opcionPedidos = 0;
-                    boolean exitPedidos = false;
                     do {
-                        String texto = teclado.next();
-                        try {
-                            opcionPedidos = Integer.parseInt(texto);
-                        } catch (NumberFormatException e) {
-                            System.out.println("Tiene que ser un número");
-                        }
-                        if (opcionPedidos == 0) {
-                            System.out.println("No existe esa opción");
-                        }
-                        if (opcionPedidos >= 1 && opcionPedidos <= 5) {
-                            exitMenu = true;
-                        }
-                    } while (!exitMenu);
-                    switch (opcionPedidos){
-                        case 1:
-                            System.out.println("-------Listado de Pedidos------");
-                            if (listaPedidos.isEmpty()){
-                                System.out.println("No hay pedidos");
-                            }else {
-                                listaPedidos.forEach(System.out::println);
+                        System.out.println("-------------PEDIDOS------------");
+                        System.out.println("1. Consultar Pedidos");
+                        System.out.println("2. Modificar Pedidos");
+                        System.out.println("3. Añadir Pedidos");
+                        System.out.println("4. Borrar Pedidos");
+                        System.out.println("5. Salir");
+                        System.out.println("--------------------------------");
+                        boolean exitPedidos = false;
+                        do {
+                            String texto = teclado.next();
+                            try {
+                                opcionPedidos = Integer.parseInt(texto);
+                            } catch (NumberFormatException e) {
+                                System.out.println("Tiene que ser un número");
                             }
-                            break;
-                        case 2:
-                            System.out.println("-------Modificar Pedidos------");
-                            break;
-                        case 3:
-                            System.out.println("-------Añadir Pedido-------");
-                            break;
-                        case 4:
-                            System.out.println("-------Borrar Pedido-------");
-                            break;
-                        case 5:
-                            salirPedidos = true;
-                            break;
-                    }
+                            if (opcionPedidos == 0) {
+                                System.out.println("No existe esa opción");
+                            }
+                            if (opcionPedidos >= 1 && opcionPedidos <= 5) {
+                                exitPedidos = true;
+                            }
+                        } while (!exitPedidos);
+                        switch (opcionPedidos) {
+                            case 1:
+                                System.out.println("-------Listado de Pedidos------");
+                                if (listaPedidos.isEmpty()) {
+                                    System.out.println("No hay pedidos");
+                                } else {
+                                    listaPedidos.forEach(System.out::println);
+                                }
+                                break;
+                            case 2:
+                                System.out.println("-------Modificar Pedidos------");
+                                break;
+                            case 3:
+                                System.out.println("-------Añadir Pedido-------");
+                                Pedido pedido = new Pedido();
+                                pedido.setFechaPedido(LocalDate.now());
+                                pedido.asignarNumeroPedido(pedido);
+                                System.out.println("Elige un cliente por su NIF/DNI");
+                                for (int i = 0; i < listaCliente.size(); i++) {
+                                    System.out.println(listaCliente.get(i).getNombre() + " " + listaCliente.get(i).getApellidos() + " " + listaCliente.get(i).getNIF());
+                                }
+                                teclado.nextLine();
+                                String nifPedido = teclado.nextLine();
+                                boolean comprobarCliente = listaCliente.contains(nifPedido);
+                                // Método para comprobar si existe el cliente, en ese caso lo añade a pedido
+                                for (int i = 0; i < listaCliente.size(); i++) {
+                                    if (listaCliente.get(i).getNIF().equalsIgnoreCase(nifPedido)){
+                                        pedido.setEnvio(listaCliente.get(i).getDireccion());
+                                        pedido.setCliente(nifPedido);
+                                    }
+                                }
+                                boolean exitPago = false;
+                                do{
+                                    System.out.println("Método de pago, transferencia o tarjeta?");
+                                    String metodoPago = teclado.nextLine();
+                                    if (metodoPago.equalsIgnoreCase("transferencia") || metodoPago.equalsIgnoreCase("tarjeta")){
+                                        pedido.setFormaPago(metodoPago);
+                                        exitPago = true;
+                                    }else {
+                                        System.out.println("Método Incorrecto");
+                                        exitPago = false;
+                                    }
+                                }while (!exitPago);
+                                listaPedidos.add(pedido);
+                                System.out.println(pedido.toString());
+                                break;
+                            case 4:
+                                System.out.println("-------Borrar Pedido-------");
+                                break;
+                            case 5:
+                                salirPedidos = true;
+                                break;
+                        }
+                    } while (!salirPedidos);
                     exitMenu = false;
                     break;
                 case 4:
@@ -319,18 +348,14 @@ public class Test {
                                 mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
 
                                 LocalDateTime fechaHoraActual = LocalDateTime.now();
-                                DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd h;mm;ss");
                                 String directorio = fechaHoraActual.format(formatter);
 
 
                                 crearDirectorio("./backup/" + directorio);
-                                // Escribe en un fichero JSON de Clientes
-                                mapeador.writeValue(new File("./backup/" + directorio + "/Clientes.json"),
-                                        generarCliente(listaCliente));
-
-                                // Escribe en un fichero JSON de Productos
-                                mapeador.writeValue(new File("./backup/" + directorio + "/Productos.json"),
-                                        generarProducto(listaProductos));
+                                // Escribe en un fichero JSON de Pedidos
+                                mapeador.writeValue(new File("./backup/" + directorio + "/Pedidos.json"),
+                                        generarPedido(listaPedidos));
                                 break;
                             case 2:
                                 System.out.println("-------Restaurar Copia de Seguridad-------");
@@ -365,9 +390,9 @@ public class Test {
         }
     }
 
-    public static ArrayList<Cliente> generarCliente(ArrayList<Cliente> listaCliente) {
-        ArrayList<Cliente> lista = new ArrayList<>();
-        lista.addAll(listaCliente);
+    public static ArrayList<Pedido> generarPedido(ArrayList<Pedido> listaPedido) {
+        ArrayList<Pedido> lista = new ArrayList<>();
+        lista.addAll(listaPedido);
         return lista;
     }
 

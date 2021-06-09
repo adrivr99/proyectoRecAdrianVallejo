@@ -1,21 +1,33 @@
 package main.java.proyecto1;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 
 public class Pedido {
-    private String numeroPedido;
-    private Date fechaPedido;
+    private String numeroPedido; //
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate fechaPedido; //
     private String formaPago;
-    private String envio;
+    private String envio; //
     private String observaciones;
-    private String cliente;
+    private String cliente; //
     private char[][] productos;
     private int cantidad;
+    private int contador = 1;
 
-    public Pedido(String numeroPedido, Date fechaPedido, String formaPago, String envio, String observaciones, String cliente, char[][] productos, int cantidad) {
+    public Pedido() {
+    }
+
+    public Pedido(String numeroPedido, LocalDate fechaPedido, String formaPago, String envio, String observaciones, String cliente, char[][] productos, int cantidad) {
         this.numeroPedido = numeroPedido;
         this.fechaPedido = fechaPedido;
         this.formaPago = formaPago;
@@ -24,6 +36,7 @@ public class Pedido {
         this.cliente = cliente;
         this.productos = productos;
         this.cantidad = cantidad;
+        ++contador;
     }
 
     public String getNumeroPedido() {
@@ -34,11 +47,11 @@ public class Pedido {
         this.numeroPedido = numeroPedido;
     }
 
-    public Date getFechaPedido() {
+    public LocalDate getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
+    public void setFechaPedido(LocalDate fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
 
@@ -88,6 +101,22 @@ public class Pedido {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+
+    public Pedido asignarNumeroPedido(Pedido pedido){
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy");
+        LocalDate fecha = LocalDate.now();
+        String anio = sdf.format(fecha);
+        pedido.setNumeroPedido(pedido.getContador()+ "/" + anio);
+        return pedido;
     }
 
     @Override
