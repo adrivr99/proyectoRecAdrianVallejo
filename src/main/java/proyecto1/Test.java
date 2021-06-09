@@ -1,7 +1,6 @@
 package main.java.proyecto1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.util.DurationUnitConverter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
@@ -17,7 +16,6 @@ public class Test {
     public static void main(String[] args) throws IOException {
         Scanner teclado = new Scanner(System.in);
         Empresa rocketMouse = new Empresa();
-
         ArrayList<Cliente> listaCliente = ServicioLectura.CSVClientes("Clientes.csv");
         ArrayList<Articulo> listaArticulos = ServicioLectura.CSVArticulos("Articulos.csv");
         ArrayList<Servicio> listaServicios = ServicioLectura.CSVServicios(("Servicios.csv"));
@@ -89,39 +87,21 @@ public class Test {
                                 System.out.println("-------Modificar Cliente--------");
                                 listaCliente.forEach(System.out::println);
                                 System.out.println("Elige un cliente por su id para modificarlo");
-                                boolean exitModificarClientes = false;
                                 String opcionModificarClientes = leerNif();
                                 // Bucle for para Modificar el cliente
                                 for (int i = 0; i < listaCliente.size(); i++) {
                                     if (listaCliente.get(i).getNIF().equalsIgnoreCase(opcionModificarClientes)) {
                                         System.out.println(listaCliente.get(i).getNombre() + " " + listaCliente.get(i).getApellidos());
-                                        String nif = leerNif();
-                                        listaCliente.get(i).setNIF(nif);
-                                        teclado.nextLine();
-                                        System.out.println("Introduce el nombre:");
-                                        String nombre = teclado.nextLine();
-                                        listaCliente.get(i).setNombre(nombre);
-                                        System.out.println("Introduce los apellidos");
-                                        String apellidos = teclado.nextLine();
-                                        listaCliente.get(i).setApellidos(apellidos);
-                                        System.out.println("Introduce la direccion (Calle, Número, Ciudad, País");
-                                        String direccion = teclado.nextLine();
-                                        listaCliente.get(i).setDireccion(direccion);
+                                        listaCliente.remove(i);
+                                        Cliente cliente = new Cliente();
+                                        listaCliente.add(cliente.updateCliente(cliente));
                                     }
                                 }
                                 break;
                             case 3:
                                 System.out.println("---------Añadir Cliente---------");
-                                String nif = leerNif();
-                                teclado.nextLine();
-                                System.out.println("Introduce el nombre:");
-                                String nombre = teclado.nextLine();
-                                System.out.println("Introduce los apellidos");
-                                String apellidos = teclado.nextLine();
-                                System.out.println("Introduce la direccion (Calle, Número, Ciudad, País");
-                                String direccion = teclado.nextLine();
-                                Cliente cliente = new Cliente(nif, nombre, apellidos, direccion);
-                                listaCliente.add(cliente);
+                                Cliente cliente = new Cliente();
+                                listaCliente.add(cliente.addCliente(cliente));
                                 if (listaCliente.contains(cliente)) {
                                     System.out.println("Cliente añadido correctamente");
                                 } else {
@@ -133,7 +113,7 @@ public class Test {
                                 listaCliente.forEach(System.out::println);
                                 System.out.println("Elige el NIF del cliente de la lista a eliminar:");
                                 teclado.nextLine();
-                                String nifEliminar = teclado.nextLine();
+                                String nifEliminar = leerNif();
                                 for (int i = 0; i < listaCliente.size(); i++) {
                                     if (listaCliente.get(i).getNIF().equalsIgnoreCase(nifEliminar)) {
                                         listaCliente.remove(i);
@@ -176,16 +156,31 @@ public class Test {
                                 break;
                             case 2:
                                 System.out.println("-------Modificar Producto-------");
-                                listaArticulos.forEach(System.out::println);
-                                listaServicios.forEach(System.out::println);
-                                System.out.println("Elige un producto por su id para modificarlo");
-                                String opcionModificarProductos = teclado.next();
-                                // Bucle for para mostrar el productos
-                                for (Producto listaProducto : listaProductos) {
-                                    if (listaProducto instanceof Servicio) {
-
-                                    }
-                                    if (listaProducto instanceof Articulo) {
+                                listaProductos.forEach(System.out::println);
+                                System.out.println("Elige un cliente por su id para modificarlo");
+                                int IDModificar = teclado.nextInt();
+                                for (int i = 0; i < listaProductos.size(); i++) {
+                                    if (listaProductos.get(i).getProducto() == IDModificar){
+                                        System.out.println("Producto: " + listaProductos.get(i).getNombre());
+                                        int idProducto = listaProductos.get(i).getProducto();
+                                        boolean exitModificar = false;
+                                        do{
+                                        if (listaProductos.get(i) instanceof Articulo){
+                                            listaProductos.remove(listaProductos.get(i));
+                                            Articulo articulo = new Articulo();
+                                            articulo.addArticulo(articulo);
+                                            articulo.setProducto(idProducto);
+                                            listaProductos.add(articulo);
+                                            exitModificar = true;
+                                        } else if (listaProductos.get(i) instanceof Servicio){
+                                            listaProductos.remove(listaProductos.get(i));
+                                            Servicio servicio = new Servicio();
+                                            servicio.addServicio(servicio);
+                                            servicio.setProducto(idProducto);
+                                            listaProductos.add(servicio);
+                                            exitModificar = true;
+                                        }
+                                        }while(!exitModificar);
 
                                     }
                                 }
@@ -200,46 +195,32 @@ public class Test {
                                     System.out.println("--------Añadir Articulo---------");
                                     int idProducto = listaProductos.get(listaProductos.size()-1).getProducto();
                                     ++idProducto;
-                                    System.out.println("Introduce el nombre del producto: ");
-                                    String nombre = teclado.nextLine();
-                                    System.out.println("Introduce el precio:");
-                                    String precioString = teclado.nextLine();
-                                    double precio = Double.parseDouble(precioString);
-                                    System.out.println("Introduce el peso:");
-                                    String pesoString = teclado.nextLine();
-                                    double peso = Double.parseDouble(pesoString);
-                                    System.out.println("Introduce la fecha de fabricacion (yy-MM-dd)");
-                                    String fecha = teclado.nextLine();
-                                    LocalDate fechaFabricacion = LocalDate.parse(fecha);
-
-                                    Articulo articulo = new Articulo(peso, fechaFabricacion, idProducto, nombre, precio);
+                                    Articulo articulo = new Articulo();
+                                    articulo.addArticulo(articulo);
+                                    articulo.setProducto(idProducto);
                                     listaProductos.add(articulo);
-
+                                    if (listaProductos.contains(articulo)) {
+                                        System.out.println("Artículo añadido correctamente");
+                                    } else {
+                                        System.out.println("No se ha podido añadir el Artículo");
+                                    }
                                 } else if (crearProducto.equalsIgnoreCase("servicio")){
                                     System.out.println("--------Añadir Servicio---------");
                                     int idProducto = listaProductos.get(listaProductos.size()-1).getProducto();
                                     ++idProducto;
-                                    System.out.println("Introduce el nombre del producto: ");
-                                    String nombre = teclado.nextLine();
-                                    System.out.println("Introduce el precio:");
-                                    String precioString = teclado.nextLine();
-                                    double precio = Double.parseDouble(precioString);
-                                    System.out.println("Introduce la duración estimada:");
-                                    String duracionString = teclado.nextLine();
-                                    double duracion = Double.parseDouble(duracionString);
-                                    System.out.println("Introduce la fecha de Inicio (yy-MM-dd)");
-                                    String fechaIni = teclado.nextLine();
-                                    LocalDate fechaInicio = LocalDate.parse(fechaIni);
-                                    System.out.println("Introduce la fecha de Inicio (yy-MM-dd)");
-                                    String fechaFin = teclado.nextLine();
-                                    LocalDate fechaFinalizacion = LocalDate.parse(fechaFin);
-
-                                    Servicio servicio = new Servicio(duracion, fechaInicio, fechaFinalizacion, idProducto, nombre, precio);
+                                    Servicio servicio = new Servicio();
+                                    servicio.addServicio(servicio);
+                                    servicio.setProducto(idProducto);
                                     listaProductos.add(servicio);
-
+                                    if (listaProductos.contains(servicio)) {
+                                        System.out.println("Servicio añadido correctamente");
+                                    } else {
+                                        System.out.println("No se ha podido añadir el Servicio");
+                                    }
                                 }else{
                                     System.out.println("Error 404");
                                 }
+
                                 break;
                             case 4:
                                 System.out.println("---------Borrar Producto--------");
@@ -298,15 +279,17 @@ public class Test {
 
                                 LocalDateTime fechaHoraActual = LocalDateTime.now();
                                 DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-                                String str = fechaHoraActual.format(formatter);
+                                String directorio = fechaHoraActual.format(formatter);
 
 
-                                //crearDirectorio("./backup/" + str);
+                                crearDirectorio("./backup/" + directorio);
                                 // Escribe en un fichero JSON de Clientes
-                                mapeador.writeValue(new File("./backup/Clientes.json"), generarCliente(listaCliente));
+                                mapeador.writeValue(new File("./backup/" + directorio + "/Clientes.json"),
+                                        generarCliente(listaCliente));
 
-                                // Escribe en un fichero JSON el catálogo de envíos
-                                mapeador.writeValue(new File("./backup/Articulos.json"), generarArticulo(listaArticulos));
+                                // Escribe en un fichero JSON de Productos
+                                mapeador.writeValue(new File("./backup/" + directorio + "/Productos.json"),
+                                        generarProducto(listaProductos));
                                 break;
                             case 2:
                                 System.out.println("-------Restaurar Copia de Seguridad-------");
@@ -347,9 +330,9 @@ public class Test {
         return lista;
     }
 
-    public static ArrayList<Articulo> generarArticulo(ArrayList<Articulo> listaArticulo) {
-        ArrayList<Articulo> lista = new ArrayList<>();
-        lista.addAll(listaArticulo);
+    public static ArrayList<Producto> generarProducto(ArrayList<Producto> listaProducto) {
+        ArrayList<Producto> lista = new ArrayList<>();
+        lista.addAll(listaProducto);
         return lista;
     }
 
