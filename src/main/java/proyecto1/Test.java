@@ -157,31 +157,33 @@ public class Test {
                             case 2:
                                 System.out.println("-------Modificar Producto-------");
                                 listaProductos.forEach(System.out::println);
-                                System.out.println("Elige un cliente por su id para modificarlo");
+                                System.out.println("Elige un producto por su id para modificarlo");
                                 int IDModificar = teclado.nextInt();
                                 for (int i = 0; i < listaProductos.size(); i++) {
                                     if (listaProductos.get(i).getProducto() == IDModificar){
                                         System.out.println("Producto: " + listaProductos.get(i).getNombre());
                                         int idProducto = listaProductos.get(i).getProducto();
-                                        boolean exitModificar = false;
-                                        do{
+                                        //boolean exitModificar = false;
+                                        //do{
                                         if (listaProductos.get(i) instanceof Articulo){
                                             listaProductos.remove(listaProductos.get(i));
                                             Articulo articulo = new Articulo();
                                             articulo.addArticulo(articulo);
                                             articulo.setProducto(idProducto);
-                                            listaProductos.add(articulo);
-                                            exitModificar = true;
+                                            // Añadimos el articulo en la misma posición en la que estabas
+                                            listaProductos.add(i, articulo);
+                                            //exitModificar = true;
                                         } else if (listaProductos.get(i) instanceof Servicio){
                                             listaProductos.remove(listaProductos.get(i));
                                             Servicio servicio = new Servicio();
                                             servicio.addServicio(servicio);
                                             servicio.setProducto(idProducto);
-                                            listaProductos.add(servicio);
-                                            exitModificar = true;
+                                            // Añadimos el servicio
+                                            // en la misma posición en la que estabas
+                                            listaProductos.add(i, servicio);
+                                            //exitModificar = true;
                                         }
-                                        }while(!exitModificar);
-
+                                        //}while(!exitModificar);
                                     }
                                 }
 
@@ -249,6 +251,45 @@ public class Test {
                     System.out.println("4. Borrar Pedidos");
                     System.out.println("5. Salir");
                     System.out.println("--------------------------------");
+                    int opcionPedidos = 0;
+                    boolean exitPedidos = false;
+                    do {
+                        String texto = teclado.next();
+                        try {
+                            opcionPedidos = Integer.parseInt(texto);
+                        } catch (NumberFormatException e) {
+                            System.out.println("Tiene que ser un número");
+                        }
+                        if (opcionPedidos == 0) {
+                            System.out.println("No existe esa opción");
+                        }
+                        if (opcionPedidos >= 1 && opcionPedidos <= 5) {
+                            exitMenu = true;
+                        }
+                    } while (!exitMenu);
+                    switch (opcionPedidos){
+                        case 1:
+                            System.out.println("-------Listado de Pedidos------");
+                            if (listaPedidos.isEmpty()){
+                                System.out.println("No hay pedidos");
+                            }else {
+                                listaPedidos.forEach(System.out::println);
+                            }
+                            break;
+                        case 2:
+                            System.out.println("-------Modificar Pedidos------");
+                            break;
+                        case 3:
+                            System.out.println("-------Añadir Pedido-------");
+                            break;
+                        case 4:
+                            System.out.println("-------Borrar Pedido-------");
+                            break;
+                        case 5:
+                            salirPedidos = true;
+                            break;
+                    }
+                    exitMenu = false;
                     break;
                 case 4:
                     boolean salirCopias = false;
