@@ -279,6 +279,7 @@ public class Test {
                             case 3:
                                 System.out.println("-------Añadir Pedido-------");
                                 Pedido pedido = new Pedido();
+                                pedido.setEmpresa(rocketMouse);
                                 pedido.setFechaPedido(LocalDate.now());
                                 pedido.asignarNumeroPedido(pedido);
                                 System.out.println("Elige un cliente por su NIF/DNI");
@@ -291,8 +292,8 @@ public class Test {
                                 // Método para comprobar si existe el cliente, en ese caso lo añade a pedido
                                 for (int i = 0; i < listaCliente.size(); i++) {
                                     if (listaCliente.get(i).getNIF().equalsIgnoreCase(nifPedido)){
-                                        pedido.setEnvio(listaCliente.get(i).getDireccion());
-                                        pedido.setCliente(nifPedido);
+                                        pedido.setDireccionCliente(listaCliente.get(i).getDireccion());
+                                        pedido.setCliente(listaCliente.get(i).getNombre() + " " + listaCliente.get(i).getApellidos());
                                     }
                                 }
                                 boolean exitPago = false;
@@ -307,6 +308,20 @@ public class Test {
                                         exitPago = false;
                                     }
                                 }while (!exitPago);
+                                boolean exitEnvio = false;
+                                do{
+                                    System.out.println("Método de envio:\n1.Recoger en tienda\n2.Envio a domicilio");
+                                    int envio = teclado.nextInt();
+                                    if (envio == 1){
+                                        pedido.setEnvio(false);
+                                        exitEnvio = true;
+                                    }else if (envio == 2){
+                                        pedido.setEnvio(true);
+                                        exitEnvio = true;
+                                    }else{
+                                        System.out.println("Método de envio no valido, seleciona 1 o 2");
+                                    }
+                                }while(!exitEnvio);
                                 listaPedidos.add(pedido);
                                 System.out.println(pedido.toString());
                                 break;
@@ -348,7 +363,7 @@ public class Test {
                                 mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
 
                                 LocalDateTime fechaHoraActual = LocalDateTime.now();
-                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd h;mm;ss");
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_hhmm");
                                 String directorio = fechaHoraActual.format(formatter);
 
 

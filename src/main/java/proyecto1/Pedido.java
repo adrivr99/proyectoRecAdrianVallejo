@@ -16,27 +16,34 @@ public class Pedido {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fechaPedido; //
+    private Empresa empresa;
     private String formaPago;
-    private String envio; //
+    private String direccionCliente; //
+    private boolean envio;
     private String observaciones;
     private String cliente; //
     private char[][] productos;
     private int cantidad;
-    private int contador = 1;
+    private static int contador = 0;
 
     public Pedido() {
+        contador++;
     }
 
-    public Pedido(String numeroPedido, LocalDate fechaPedido, String formaPago, String envio, String observaciones, String cliente, char[][] productos, int cantidad) {
+    public Pedido(String numeroPedido, LocalDate fechaPedido, Empresa empresa,
+                  String formaPago, String direccionCliente, boolean envio,
+                  String observaciones, String cliente, char[][] productos, int cantidad) {
         this.numeroPedido = numeroPedido;
         this.fechaPedido = fechaPedido;
+        this.empresa = empresa;
         this.formaPago = formaPago;
+        this.direccionCliente = direccionCliente;
         this.envio = envio;
         this.observaciones = observaciones;
         this.cliente = cliente;
         this.productos = productos;
         this.cantidad = cantidad;
-        ++contador;
+        contador++;
     }
 
     public String getNumeroPedido() {
@@ -55,6 +62,14 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
     }
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
     public String getFormaPago() {
         return formaPago;
     }
@@ -63,11 +78,19 @@ public class Pedido {
         this.formaPago = formaPago;
     }
 
-    public String getEnvio() {
+    public String getDireccionCliente() {
+        return direccionCliente;
+    }
+
+    public void setDireccionCliente(String direccionCliente) {
+        this.direccionCliente = direccionCliente;
+    }
+
+    public boolean isEnvio() {
         return envio;
     }
 
-    public void setEnvio(String envio) {
+    public void setEnvio(boolean envio) {
         this.envio = envio;
     }
 
@@ -103,25 +126,48 @@ public class Pedido {
         this.cantidad = cantidad;
     }
 
-    public int getContador() {
+    public static int getContador() {
         return contador;
     }
 
-    public void setContador(int contador) {
-        this.contador = contador;
+    public static void setContador(int contador) {
+        Pedido.contador = contador;
     }
 
     public Pedido asignarNumeroPedido(Pedido pedido){
-        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("yyyy");
-        LocalDate fecha = LocalDate.now();
-        String anio = sdf.format(fecha);
-        pedido.setNumeroPedido(pedido.getContador()+ "/" + anio);
+        pedido.setNumeroPedido(this.contador+ "/" + LocalDate.now().getYear());
         return pedido;
     }
 
+
     @Override
     public String toString() {
-        return "Pedido{" +
+        if (envio == true){
+            return
+                    empresa +
+                            "\n------------------------------------------------"+
+                            "\n\t\t\tFecha:" + fechaPedido +
+                            "\nCLiente: " + cliente + "\t\t\t" + numeroPedido +
+                            "\nDireccion Cliente: " + envio +
+                            "\nForma de pago: " + formaPago +
+                            "\nDireccion de envio: " + envio +
+                            "\nEnvio: " + "Si [X]\t No [ ]" +
+                            "\n------------------------------------------------";
+        } else if (envio == false){
+            return
+                    empresa +
+                            "\n------------------------------------------------"+
+                            "\n\t\t\tFecha:" + fechaPedido +
+                            "\nCLiente: " + cliente + "\t\t\t" + numeroPedido +
+                            "\nDireccion Cliente: " + envio +
+                            "\nForma de pago: " + formaPago +
+                            "\nDireccion de envio: " + envio +
+                            "\nObservaciones: " + observaciones +
+                            "\n------------------------------------------------";
+        }
+
+    }
+        /*return "Pedido{" +
                 "numeroPedido='" + numeroPedido + '\'' +
                 ", fechaPedido=" + fechaPedido +
                 ", formaPago='" + formaPago + '\'' +
@@ -131,5 +177,5 @@ public class Pedido {
                 ", productos=" + Arrays.toString(productos) +
                 ", cantidad=" + cantidad +
                 '}';
-    }
+    }*/
 }

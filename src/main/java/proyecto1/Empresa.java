@@ -67,11 +67,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return  "nombre='" + nombre + '\'' +
-                ", CIF='" + CIF + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", ciudad='" + ciudad + '\'' +
-                ", pais='" + pais + '\'' +
-                ", telefono=" + telefono;
+        return  "-----------------------------------------------------\n" +
+                "|\t\t\t\t" +nombre + "\n" + "|" + direccion + " " + ciudad + " " + pais +"\n|Tel: " + telefono;
     }
 }
