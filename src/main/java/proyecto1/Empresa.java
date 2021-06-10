@@ -68,6 +68,6 @@ public class Empresa {
     @Override
     public String toString() {
         return  "-----------------------------------------------------\n" +
-                "|\t\t\t\t" +nombre + "\n" + "|" + direccion + " " + ciudad + " " + pais +"\n|Tel: " + telefono;
+                "\t\t\t\t" +nombre + "\n" + direccion + " " + ciudad + ", " + pais +"\nTel: " + telefono;
     }
 }

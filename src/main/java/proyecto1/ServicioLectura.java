@@ -1,7 +1,6 @@
 package main.java.proyecto1;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -101,6 +100,21 @@ public class ServicioLectura {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+    public static void generarTxt(Pedido pedido) {
+        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(pedido.getNumeroPedido()+".txt", true))) {
+
+            //flujo.write sirve para escribir en el fichero
+            flujo.write(String.valueOf(pedido));
+            //flujo.newLine sirve para pasar a la siguiente linea
+            flujo.newLine();
+            //flujo.flush sirve para liberar el buffer
+            flujo.flush();
+
+        } catch (IOException e) {
+            System.out.println("No se ha podido introducir");
+
         }
     }
 }

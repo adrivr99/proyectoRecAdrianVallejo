@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Pedido {
@@ -16,33 +17,16 @@ public class Pedido {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fechaPedido; //
-    private Empresa empresa;
-    private String formaPago;
+    private Empresa empresa; //
+    private String formaPago; //
     private String direccionCliente; //
-    private boolean envio;
-    private String observaciones;
+    private boolean envio; //
+    private ArrayList<ListaProductos> listaProductos;
     private String cliente; //
-    private char[][] productos;
-    private int cantidad;
+
     private static int contador = 0;
 
     public Pedido() {
-        contador++;
-    }
-
-    public Pedido(String numeroPedido, LocalDate fechaPedido, Empresa empresa,
-                  String formaPago, String direccionCliente, boolean envio,
-                  String observaciones, String cliente, char[][] productos, int cantidad) {
-        this.numeroPedido = numeroPedido;
-        this.fechaPedido = fechaPedido;
-        this.empresa = empresa;
-        this.formaPago = formaPago;
-        this.direccionCliente = direccionCliente;
-        this.envio = envio;
-        this.observaciones = observaciones;
-        this.cliente = cliente;
-        this.productos = productos;
-        this.cantidad = cantidad;
         contador++;
     }
 
@@ -94,12 +78,12 @@ public class Pedido {
         this.envio = envio;
     }
 
-    public String getObservaciones() {
-        return observaciones;
+    public ArrayList<ListaProductos> getListaProductos() {
+        return listaProductos;
     }
 
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
+    public void setListaProductos(ArrayList<ListaProductos> listaProductos) {
+        this.listaProductos = listaProductos;
     }
 
     public String getCliente() {
@@ -108,22 +92,6 @@ public class Pedido {
 
     public void setCliente(String cliente) {
         this.cliente = cliente;
-    }
-
-    public char[][] getProductos() {
-        return productos;
-    }
-
-    public void setProductos(char[][] productos) {
-        this.productos = productos;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     public static int getContador() {
@@ -135,47 +103,24 @@ public class Pedido {
     }
 
     public Pedido asignarNumeroPedido(Pedido pedido){
-        pedido.setNumeroPedido(this.contador+ "/" + LocalDate.now().getYear());
+        pedido.setNumeroPedido(this.contador+ "-" + LocalDate.now().getYear());
         return pedido;
     }
 
 
     @Override
     public String toString() {
-        if (envio == true){
             return
-                    empresa +
-                            "\n------------------------------------------------"+
-                            "\n\t\t\tFecha:" + fechaPedido +
-                            "\nCLiente: " + cliente + "\t\t\t" + numeroPedido +
-                            "\nDireccion Cliente: " + envio +
-                            "\nForma de pago: " + formaPago +
-                            "\nDireccion de envio: " + envio +
-                            "\nEnvio: " + "Si [X]\t No [ ]" +
-                            "\n------------------------------------------------";
-        } else if (envio == false){
-            return
-                    empresa +
-                            "\n------------------------------------------------"+
-                            "\n\t\t\tFecha:" + fechaPedido +
-                            "\nCLiente: " + cliente + "\t\t\t" + numeroPedido +
-                            "\nDireccion Cliente: " + envio +
-                            "\nForma de pago: " + formaPago +
-                            "\nDireccion de envio: " + envio +
-                            "\nObservaciones: " + observaciones +
-                            "\n------------------------------------------------";
-        }
+                empresa +
+                "\n-----------------------------------------------------"+
+                "\n\t\t\tFecha:" + fechaPedido +
+                "\nCLiente: " + cliente + "\t\t\t" + numeroPedido +
+                "\nDireccion Cliente: " + direccionCliente +
+                "\n-----------------------------------------------------\n" +
+                listaProductos +
+                "\nForma de pago: " + formaPago +
+                "\nEnvio: " + envio +
+                "\n-----------------------------------------------------";
 
     }
-        /*return "Pedido{" +
-                "numeroPedido='" + numeroPedido + '\'' +
-                ", fechaPedido=" + fechaPedido +
-                ", formaPago='" + formaPago + '\'' +
-                ", envio='" + envio + '\'' +
-                ", observaciones='" + observaciones + '\'' +
-                ", cliente='" + cliente + '\'' +
-                ", productos=" + Arrays.toString(productos) +
-                ", cantidad=" + cantidad +
-                '}';
-    }*/
 }

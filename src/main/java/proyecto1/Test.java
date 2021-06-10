@@ -13,6 +13,8 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static main.java.proyecto1.ServicioLectura.generarTxt;
+
 public class Test {
     public static void main(String[] args) throws IOException {
         Scanner teclado = new Scanner(System.in);
@@ -95,7 +97,7 @@ public class Test {
                                         System.out.println(listaCliente.get(i).getNombre() + " " + listaCliente.get(i).getApellidos());
                                         listaCliente.remove(i);
                                         Cliente cliente = new Cliente();
-                                        listaCliente.add(cliente.updateCliente(cliente));
+                                        listaCliente.add(i, cliente.updateCliente(cliente));
                                     }
                                 }
                                 break;
@@ -271,6 +273,14 @@ public class Test {
                                     System.out.println("No hay pedidos");
                                 } else {
                                     listaPedidos.forEach(System.out::println);
+                                    System.out.println("Elige un pedido de la lista para imprimir");
+                                    teclado.nextLine();
+                                    String numeroPedido = teclado.nextLine();
+                                    for (Pedido pedidoAux : listaPedidos) {
+                                        if (pedidoAux.getNumeroPedido().equalsIgnoreCase(numeroPedido)) {
+                                            generarTxt(pedidoAux);
+                                        }
+                                    }
                                 }
                                 break;
                             case 2:
@@ -322,8 +332,36 @@ public class Test {
                                         System.out.println("Método de envio no valido, seleciona 1 o 2");
                                     }
                                 }while(!exitEnvio);
+                                boolean exitAddProductos = false;
+                                ArrayList<ListaProductos> listaProductosPedidos = new ArrayList<>();
+                                do{
+                                    System.out.println("Elige un pedido de la lista por su id");
+                                    for (int i = 0; i < listaProductos.size(); i++) {
+                                        System.out.println(listaProductos.get(i).getProducto() +"Producto: " + listaProductos.get(i).getNombre() + ", precio: " + listaProductos.get(i).getPrecio());
+                                    }
+                                    int elegirProducto = teclado.nextInt();
+                                    for (Producto producto: listaProductos){
+                                        if (producto.getProducto() ==  elegirProducto){
+                                            ListaProductos productoPedido = new ListaProductos();
+                                            productoPedido.setProducto(producto);
+                                            System.out.println("Indica la cantidad: ");
+                                            int cantidad = teclado.nextInt();
+                                            productoPedido.setCantidad(cantidad);
+                                            listaProductosPedidos.add(productoPedido);
+                                        }
+                                    }
+                                    System.out.println("Quieres añadir otro producto? (SI/NO)");
+                                    teclado.nextLine();
+                                    String salirAddProducto = teclado.nextLine();
+                                    if (salirAddProducto.equalsIgnoreCase("Si")){
+                                        exitAddProductos = false;
+                                    }else if (salirAddProducto.equalsIgnoreCase("No")){
+                                        exitAddProductos = true;
+                                    }
+
+                                }while(!exitAddProductos);
+                                pedido.setListaProductos(listaProductosPedidos);
                                 listaPedidos.add(pedido);
-                                System.out.println(pedido.toString());
                                 break;
                             case 4:
                                 System.out.println("-------Borrar Pedido-------");
