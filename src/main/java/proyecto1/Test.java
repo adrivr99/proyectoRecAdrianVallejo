@@ -365,6 +365,17 @@ public class Test {
                                 break;
                             case 4:
                                 System.out.println("-------Borrar Pedido-------");
+                                for (int i = 0; i < listaPedidos.size(); i++) {
+                                    System.out.println("Número de Pedido: " + listaPedidos.get(i).getNumeroPedido());
+                                }
+                                System.out.println("Elige un pedido para eliminar: ");
+                                teclado.nextLine();
+                                String pedidoDelete = teclado.nextLine();
+                                for (int i = 0; i < listaPedidos.size(); i++) {
+                                    if (listaPedidos.get(i).getNumeroPedido().equalsIgnoreCase(pedidoDelete)){
+                                        listaPedidos.remove(i);
+                                    }
+                                }
                                 break;
                             case 5:
                                 salirPedidos = true;
@@ -407,12 +418,15 @@ public class Test {
 
                                 crearDirectorio("./backup/" + directorio);
                                 // Escribe en un fichero JSON de Pedidos
-                                mapeador.writeValue(new File("./backup/" + directorio + "/Pedidos.json"),
+                                mapeador.writeValue(new File("./backup/Pedidos.json"),
                                         generarPedido(listaPedidos));
                                 break;
                             case 2:
                                 System.out.println("-------Restaurar Copia de Seguridad-------");
                                 listarDirectorio("./backup");
+                                ObjectMapper mapeadorLectura = new ObjectMapper();
+                                listaPedidos.clear();
+                                listaPedidos = mapeadorLectura.readValue(new File("./backup/Pedidos.json"), mapeadorLectura.getTypeFactory().constructCollectionType(ArrayList.class, Pedido.class));
                                 break;
                             case 3:
                                 salirCopias = true;
@@ -446,12 +460,6 @@ public class Test {
     public static ArrayList<Pedido> generarPedido(ArrayList<Pedido> listaPedido) {
         ArrayList<Pedido> lista = new ArrayList<>();
         lista.addAll(listaPedido);
-        return lista;
-    }
-
-    public static ArrayList<Producto> generarProducto(ArrayList<Producto> listaProducto) {
-        ArrayList<Producto> lista = new ArrayList<>();
-        lista.addAll(listaProducto);
         return lista;
     }
 
