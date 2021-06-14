@@ -7,9 +7,8 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class Pedido {
     private String numeroPedido; //
@@ -23,7 +22,7 @@ public class Pedido {
     private boolean envio; //
     private ArrayList<ListaArticulos> listaArticulos;
     private ArrayList<ListaServicios> listaServicios;
-    private String cliente; //
+    private Cliente cliente; //
 
     private static int contador = 0;
 
@@ -95,11 +94,11 @@ public class Pedido {
         this.listaServicios = listaServicios;
     }
 
-    public String getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(String cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -117,15 +116,78 @@ public class Pedido {
     }
 
 
+
+    private static String leerNif() {
+        Scanner teclado = new Scanner(System.in);
+        String nif = null;
+        boolean entrada;
+        do {
+            System.out.println("Introduce el NIF");
+            String texto = teclado.next();
+            if (texto.length() == 9) {
+                nif = texto;
+                entrada = true;
+            } else {
+                System.out.println("Debes introducir 8 letras y un caracter");
+                entrada = false;
+            }
+
+        } while (!entrada);
+        return nif;
+    }
+
+    // Método para asignar un cliente al pedido
+    public Cliente asignarCliente(ArrayList<Cliente> listaCliente, String nif){
+        for (Cliente cliente : listaCliente){
+            if (cliente.getNIF().equalsIgnoreCase(nif)){
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    // Método para asignar la direccion de cliente al pedido
+    public String asignarDireccionCliente(ArrayList<Cliente> listaCliente, Pedido pedido){
+        for (int i = 0; i < listaCliente.size(); i++) {
+            if (listaCliente.get(i).getNIF().equalsIgnoreCase(String.valueOf(pedido.getCliente().getNIF()))){
+                pedido.setDireccionCliente(listaCliente.get(i).getDireccion());
+                return pedido.getDireccionCliente();
+            }
+        }
+        return null;
+    }
+
+    // Método para asignar el metodo de pago al pedido
+    public String asignarPago(String metodoPago){
+            if (metodoPago.equalsIgnoreCase("transferencia") || metodoPago.equalsIgnoreCase("tarjeta")){
+                return metodoPago;
+            }else {
+                return null;
+            }
+    }
+
+    // Método booleano que devolverá true o false para asignar si el pedido será enviado (true)
+    // o si será recogido en tienda (false)
+    public boolean asignarEnvio(int envio){
+        boolean envioBoolean = false;
+        if (envio == 1) {
+            envioBoolean = false;
+            return envioBoolean;
+        } else if (envio == 2){
+            envioBoolean = true;
+            return envioBoolean;
+        }
+        return envioBoolean;
+    }
+
     @Override
     public String toString() {
             return
                 empresa +
                 "\n-----------------------------------------------------"+
-                "\n\t\t\tFecha:" + fechaPedido +
-                "\nCLiente: " + cliente + "\t\t\t" + numeroPedido +
-                "\nDireccion Cliente: " + direccionCliente +
-                "\n-----------------------------------------------------\n" +
+                "\nNumero Pedido: " + numeroPedido +
+                "\nFecha: " + fechaPedido + "\n"+
+                cliente +
                 listaArticulos +
                 listaServicios +
                 "\nForma de pago: " + formaPago +

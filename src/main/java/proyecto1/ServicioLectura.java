@@ -1,6 +1,10 @@
 package main.java.proyecto1;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import java.io.*;
+import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -116,5 +120,49 @@ public class ServicioLectura {
             System.out.println("No se ha podido introducir");
 
         }
+    }
+
+    public static void crearDirectorio(String ruta) {
+
+        Path directory = Paths.get(ruta);
+        try {
+            Files.createDirectory(directory);
+        } catch (FileAlreadyExistsException faee) {
+            System.out.println("No se puede crear " + ruta + " porque ya existe");
+        } catch (AccessDeniedException ade) {
+            System.out.println("No tiene permisos para crear " + ruta);
+        } catch (IOException e) {
+            System.out.println("Problema creando el directorio " + ruta);
+            System.out.println("Seguramente la ruta está mal escrita o no existe");
+        }
+
+    }
+
+    public static void listarDirectorio(String ruta) {
+        File f = new File(ruta);
+        if (f.exists()) {
+            // Obtiene los ficheros y directorios dentro de f y los
+            // devuelve en un array
+            File[] ficheros = f.listFiles();
+            for (File file2 : ficheros) {
+                System.out.println(file2.getName());
+            }
+        } else {
+            System.out.println("El directorio a listar no existe");
+        }
+    }
+
+    public static void generarJSON(ArrayList<Pedido> listaPedidos, String directorio) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
+        mapeador.writeValue(new File("./backup/" + directorio + "/Pedidos.json"),
+                listaPedidos);
+    }
+
+    public static ArrayList<Pedido> leerJSON(ArrayList<Pedido> listaPedidos, String copiaEleccion) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        listaPedidos = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"),
+                mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Pedido.class));
+        return listaPedidos;
     }
 }

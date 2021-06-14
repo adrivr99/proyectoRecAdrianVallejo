@@ -1,5 +1,7 @@
 package main.java.proyecto1;
 
+import java.util.ArrayList;
+
 public class Empresa {
     private String nombre;
     private String CIF;
@@ -8,13 +10,18 @@ public class Empresa {
     private String pais;
     private int telefono = 9;
 
+    // Constructor sin parámetros
     public Empresa() {
-        this.nombre = "Rocket Mouse";
-        this.CIF = "B – 76365789";
-        this.direccion = "Avenida España, 10";
-        this.ciudad = "La Línea de la Concepción";
-        this.pais = "España";
-        this.telefono = 956202122;
+    }
+
+    // Constructor parametrizado
+    public Empresa(String nombre, String CIF, String direccion, String ciudad, String pais, int telefono) {
+        this.nombre = nombre;
+        this.CIF = CIF;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+        this.pais = pais;
+        this.telefono = telefono;
     }
 
     public String getNombre() {

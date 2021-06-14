@@ -55,30 +55,6 @@ public class Servicio extends Producto {
         this.fechaFin = fechaFin;
     }
 
-    public Servicio addServicio(Servicio servicio){
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Introduce el nombre del producto: ");
-        String nombre = teclado.nextLine();
-        servicio.setNombre(nombre);
-        System.out.println("Introduce el precio:");
-        String precioString = teclado.nextLine();
-        double precio = Double.parseDouble(precioString);
-        servicio.setPrecio(precio);
-        System.out.println("Introduce la duración estimada:");
-        String duracionString = teclado.nextLine();
-        double duracion = Double.parseDouble(duracionString);
-        servicio.setDuracionEstimada(duracion);
-        System.out.println("Introduce la fecha de Inicio (yy-MM-dd)");
-        String fechaIni = teclado.nextLine();
-        LocalDate fechaInicio = LocalDate.parse(fechaIni);
-        servicio.setFechaComienzo(fechaInicio);
-        System.out.println("Introduce la fecha de Inicio (yy-MM-dd)");
-        String fechaFin = teclado.nextLine();
-        LocalDate fechaFinalizacion = LocalDate.parse(fechaFin);
-        servicio.setFechaFin(fechaFinalizacion);
-        return servicio;
-    }
-
     @Override
     public String toString() {
         return super.toString() + ". Tipo Servicio, " + "duracionEstimada: " + duracionEstimada + ", fechaComienzo: " + fechaComienzo + ", fechaFin: " + fechaFin;
