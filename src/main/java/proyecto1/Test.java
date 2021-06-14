@@ -333,21 +333,33 @@ public class Test {
                                     }
                                 }while(!exitEnvio);
                                 boolean exitAddProductos = false;
-                                ArrayList<ListaProductos> listaProductosPedidos = new ArrayList<>();
+                                ArrayList<ListaArticulos> listaArticulosPedidos = new ArrayList<>();
+                                ArrayList<ListaServicios> listaServiciosPedidos = new ArrayList<>();
+
                                 do{
-                                    System.out.println("Elige un pedido de la lista por su id");
+                                    System.out.println("Elige un producto de la lista por su id");
                                     for (int i = 0; i < listaProductos.size(); i++) {
                                         System.out.println(listaProductos.get(i).getProducto() +"Producto: " + listaProductos.get(i).getNombre() + ", precio: " + listaProductos.get(i).getPrecio());
                                     }
                                     int elegirProducto = teclado.nextInt();
-                                    for (Producto producto: listaProductos){
-                                        if (producto.getProducto() ==  elegirProducto){
-                                            ListaProductos productoPedido = new ListaProductos();
-                                            productoPedido.setProducto(producto);
+                                    for (int i = 0; i < listaArticulos.size(); i++) {
+                                        if (listaArticulos.get(i).getProducto() == elegirProducto){
+                                                ListaArticulos articuloPedido = new ListaArticulos();
+                                                articuloPedido.setArticulo(listaArticulos.get(i));
+                                                System.out.println("Indica la cantidad: ");
+                                                int cantidad = teclado.nextInt();
+                                                articuloPedido.setCantidad(cantidad);
+                                                listaArticulosPedidos.add(articuloPedido);
+                                        }
+                                    }
+                                    for (int i = 0; i < listaServicios.size(); i++) {
+                                        if (listaServicios.get(i).getProducto() == elegirProducto){
+                                            ListaServicios servicioPedido = new ListaServicios();
+                                            servicioPedido.setServicio(listaServicios.get(i));
                                             System.out.println("Indica la cantidad: ");
                                             int cantidad = teclado.nextInt();
-                                            productoPedido.setCantidad(cantidad);
-                                            listaProductosPedidos.add(productoPedido);
+                                            servicioPedido.setCantidad(cantidad);
+                                            listaServiciosPedidos.add(servicioPedido);
                                         }
                                     }
                                     System.out.println("Quieres añadir otro producto? (SI/NO)");
@@ -360,7 +372,8 @@ public class Test {
                                     }
 
                                 }while(!exitAddProductos);
-                                pedido.setListaProductos(listaProductosPedidos);
+                                pedido.setListaArticulos(listaArticulosPedidos);
+                                pedido.setListaServicios(listaServiciosPedidos);
                                 listaPedidos.add(pedido);
                                 break;
                             case 4:
@@ -418,15 +431,18 @@ public class Test {
 
                                 crearDirectorio("./backup/" + directorio);
                                 // Escribe en un fichero JSON de Pedidos
-                                mapeador.writeValue(new File("./backup/Pedidos.json"),
+                                mapeador.writeValue(new File("./backup/" + directorio + "/Pedidos.json"),
                                         generarPedido(listaPedidos));
                                 break;
                             case 2:
                                 System.out.println("-------Restaurar Copia de Seguridad-------");
                                 listarDirectorio("./backup");
                                 ObjectMapper mapeadorLectura = new ObjectMapper();
+                                System.out.println("Elige una copia de seguridad para restaurar");
+                                teclado.nextLine();
+                                String copiaEleccion = teclado.nextLine();
                                 listaPedidos.clear();
-                                listaPedidos = mapeadorLectura.readValue(new File("./backup/Pedidos.json"), mapeadorLectura.getTypeFactory().constructCollectionType(ArrayList.class, Pedido.class));
+                                listaPedidos = mapeadorLectura.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"), mapeadorLectura.getTypeFactory().constructCollectionType(ArrayList.class, Pedido.class));
                                 break;
                             case 3:
                                 salirCopias = true;

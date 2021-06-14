@@ -21,7 +21,8 @@ public class Pedido {
     private String formaPago; //
     private String direccionCliente; //
     private boolean envio; //
-    private ArrayList<ListaProductos> listaProductos;
+    private ArrayList<ListaArticulos> listaArticulos;
+    private ArrayList<ListaServicios> listaServicios;
     private String cliente; //
 
     private static int contador = 0;
@@ -78,12 +79,20 @@ public class Pedido {
         this.envio = envio;
     }
 
-    public ArrayList<ListaProductos> getListaProductos() {
-        return listaProductos;
+    public ArrayList<ListaArticulos> getListaArticulos() {
+        return listaArticulos;
     }
 
-    public void setListaProductos(ArrayList<ListaProductos> listaProductos) {
-        this.listaProductos = listaProductos;
+    public void setListaArticulos(ArrayList<ListaArticulos> listaArticulos) {
+        this.listaArticulos = listaArticulos;
+    }
+
+    public ArrayList<ListaServicios> getListaServicios() {
+        return listaServicios;
+    }
+
+    public void setListaServicios(ArrayList<ListaServicios> listaServicios) {
+        this.listaServicios = listaServicios;
     }
 
     public String getCliente() {
@@ -117,7 +126,8 @@ public class Pedido {
                 "\nCLiente: " + cliente + "\t\t\t" + numeroPedido +
                 "\nDireccion Cliente: " + direccionCliente +
                 "\n-----------------------------------------------------\n" +
-                listaProductos +
+                listaArticulos +
+                listaServicios +
                 "\nForma de pago: " + formaPago +
                 "\nEnvio: " + envio +
                 "\n-----------------------------------------------------";

@@ -1,0 +1,74 @@
+[ {
+  "numeroPedido" : "1-2021",
+  "fechaPedido" : "2021-06-14",
+  "empresa" : {
+    "nombre" : "Rocket Mouse",
+    "direccion" : "Avenida España, 10",
+    "ciudad" : "La Línea de la Concepción",
+    "pais" : "España",
+    "telefono" : 956202122,
+    "cif" : "B – 76365789"
+  },
+  "formaPago" : "tarjeta",
+  "direccionCliente" : "Avenida España, 34 La Línea de la Concepción, España",
+  "envio" : true,
+  "listaArticulos" : [ {
+    "articulo" : {
+      "producto" : 5,
+      "nombre" : "Xbox One serie S",
+      "precio" : 299.99,
+      "peso" : 1.0,
+      "fechaFabricacion" : "2020-10-10"
+    },
+    "cantidad" : 20
+  } ],
+  "listaServicios" : [ {
+    "servicio" : {
+      "producto" : 11,
+      "nombre" : "Montaje Ordenador",
+      "precio" : 50.0,
+      "duracionEstimada" : 8.0,
+      "fechaComienzo" : "2021-07-04",
+      "fechaFin" : "2021-07-06"
+    },
+    "cantidad" : 4
+  } ],
+  "cliente" : "Susana Coello Rico"
+}, {
+  "numeroPedido" : "2-2021",
+  "fechaPedido" : "2021-06-14",
+  "empresa" : {
+    "nombre" : "Rocket Mouse",
+    "direccion" : "Avenida España, 10",
+    "ciudad" : "La Línea de la Concepción",
+    "pais" : "España",
+    "telefono" : 956202122,
+    "cif" : "B – 76365789"
+  },
+  "formaPago" : "transferencia",
+  "direccionCliente" : "Calle Madrid, 106 San Roque, España",
+  "envio" : false,
+  "listaArticulos" : [ ],
+  "listaServicios" : [ {
+    "servicio" : {
+      "producto" : 7,
+      "nombre" : "Formateo Ordenador",
+      "precio" : 30.0,
+      "duracionEstimada" : 4.0,
+      "fechaComienzo" : "2021-06-18",
+      "fechaFin" : "2021-06-19"
+    },
+    "cantidad" : 20
+  }, {
+    "servicio" : {
+      "producto" : 10,
+      "nombre" : "Instalación Office 2016",
+      "precio" : 10.0,
+      "duracionEstimada" : 0.5,
+      "fechaComienzo" : "2021-06-19",
+      "fechaFin" : "2021-06-20"
+    },
+    "cantidad" : 50
+  } ],
+  "cliente" : "Roberto Jimenez Moreno"
+} ]
