@@ -1,8 +1,9 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import java.util.ArrayList;
 
 public class ListaServicios {
+
     private Servicio servicio;
     private int cantidad;
 
@@ -30,20 +31,20 @@ public class ListaServicios {
         this.cantidad = cantidad;
     }
 
-    // Método para añadir un servicio de la Lista de Servicios dentros de la listaPedidosServicios
-    // Para ello se selecciona el producto por su id y se pasa al método como parametro
+    // Metodo para a�adir un servicio de la Lista de Servicios dentros de la listaPedidosServicios
+    // Para ello se selecciona el producto por su id y se pasa al metodo como parametro
     // para un vez listado el array, se selecione el servicio que tiene ese id
-    public Servicio addServicioLista (ArrayList<Servicio> listaServicios, int elegirProducto){
+    public Servicio addServicioLista(ArrayList<Servicio> listaServicios, int elegirProducto) {
         for (int i = 0; i < listaServicios.size(); i++) {
-            if (listaServicios.get(i).getProducto() == elegirProducto){
-                return  listaServicios.get(i);
+            if (listaServicios.get(i).getProducto() == elegirProducto) {
+                return listaServicios.get(i);
             }
         }
         return null;
     }
 
     public String toString() {
-        return  "\n" +servicio.getNombre() + " x " + servicio.getPrecio() + "€. Cantidad: " + cantidad + " uds." +
-                "\n-----------------------------------------------------\n";
+        return "\n" + servicio.getNombre() + " x " + servicio.getPrecio() + "€. Cantidad: " + cantidad + " uds."
+                + "\n-----------------------------------------------------\n";
     }
 }

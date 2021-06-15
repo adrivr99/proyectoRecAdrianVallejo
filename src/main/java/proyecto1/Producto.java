@@ -1,6 +1,7 @@
-package main.java.proyecto1;
+package proyecto1;
 
 public class Producto {
+
     private int producto;
     private String nombre;
     private double precio;
@@ -37,7 +38,6 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
 
     @Override
     public String toString() {

@@ -1,4 +1,4 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -11,16 +11,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ServicioLectura {
-    public static ArrayList <Cliente> CSVClientes(String idFichero){
+
+    public static ArrayList<Cliente> CSVClientes(String idFichero) {
         // Variables para guardar los datos que se van leyendo
         String[] tokens;
         String linea;
-        ArrayList <Cliente> listaClientes = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
 
         // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
         // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
         // las operaciones con el archivo
-        try (Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
+        try ( Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
             // hasNextLine devuelve true mientras haya líneas por leer
             while (datosFichero.hasNextLine()) {
                 // Guarda la línea completa en un String
@@ -42,16 +43,16 @@ public class ServicioLectura {
         }
     }
 
-    public static ArrayList <Articulo> CSVArticulos(String idFichero){
+    public static ArrayList<Articulo> CSVArticulos(String idFichero) {
         // Variables para guardar los datos que se van leyendo
         String[] tokens;
         String linea;
-        ArrayList <Articulo> listaArticulos = new ArrayList<>();
+        ArrayList<Articulo> listaArticulos = new ArrayList<>();
 
         // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
         // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
         // las operaciones con el archivo
-        try (Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
+        try ( Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
             // hasNextLine devuelve true mientras haya líneas por leer
             while (datosFichero.hasNextLine()) {
                 // Guarda la línea completa en un String
@@ -60,7 +61,7 @@ public class ServicioLectura {
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
                 Articulo articulo = new Articulo();
-                articulo.setPeso(Double.parseDouble(tokens[0]) );
+                articulo.setPeso(Double.parseDouble(tokens[0]));
                 articulo.setFechaFabricacion(LocalDate.parse(tokens[1]));
                 articulo.setProducto(Integer.parseInt(tokens[2]));
                 articulo.setNombre(tokens[3]);
@@ -74,16 +75,16 @@ public class ServicioLectura {
         }
     }
 
-    public static ArrayList <Servicio> CSVServicios(String idFichero){
+    public static ArrayList<Servicio> CSVServicios(String idFichero) {
         // Variables para guardar los datos que se van leyendo
         String[] tokens;
         String linea;
-        ArrayList <Servicio> listaServicios = new ArrayList<>();
+        ArrayList<Servicio> listaServicios = new ArrayList<>();
 
         // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
         // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
         // las operaciones con el archivo
-        try (Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
+        try ( Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
             // hasNextLine devuelve true mientras haya líneas por leer
             while (datosFichero.hasNextLine()) {
                 // Guarda la línea completa en un String
@@ -92,7 +93,7 @@ public class ServicioLectura {
                 // línea en función del carácter separador de campos del fichero CSV
                 tokens = linea.split(";");
                 Servicio servicio = new Servicio();
-                servicio.setDuracionEstimada(Double.parseDouble(tokens[0]) );
+                servicio.setDuracionEstimada(Double.parseDouble(tokens[0]));
                 servicio.setFechaComienzo(LocalDate.parse(tokens[1]));
                 servicio.setFechaFin(LocalDate.parse(tokens[2]));
                 servicio.setProducto(Integer.parseInt(tokens[3]));
@@ -106,8 +107,10 @@ public class ServicioLectura {
             return null;
         }
     }
+
+    // M�todo para generar un archivo TXT de un pedido
     public static void generarTxt(Pedido pedido) {
-        try (BufferedWriter flujo = new BufferedWriter(new FileWriter(pedido.getNumeroPedido()+".txt", true))) {
+        try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(pedido.getNumeroPedido() + ".txt", true))) {
 
             //flujo.write sirve para escribir en el fichero
             flujo.write(String.valueOf(pedido));
@@ -122,6 +125,7 @@ public class ServicioLectura {
         }
     }
 
+    // M�todo para crear un directorio pasandole la ruta como par�metro
     public static void crearDirectorio(String ruta) {
 
         Path directory = Paths.get(ruta);
@@ -138,6 +142,7 @@ public class ServicioLectura {
 
     }
 
+    // M�todo para listar el contenido de un directorio pasandole la ruta por par�metros
     public static void listarDirectorio(String ruta) {
         File f = new File(ruta);
         if (f.exists()) {
@@ -152,6 +157,7 @@ public class ServicioLectura {
         }
     }
 
+    // M�todo para generar un archivo JSON
     public static void generarJSON(ArrayList<Pedido> listaPedidos, String directorio) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -159,6 +165,7 @@ public class ServicioLectura {
                 listaPedidos);
     }
 
+    // M�todo para leer un archivo JSON y devuelve una lista de pedidos
     public static ArrayList<Pedido> leerJSON(ArrayList<Pedido> listaPedidos, String copiaEleccion) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         listaPedidos = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"),

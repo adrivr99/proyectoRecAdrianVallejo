@@ -1,4 +1,4 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -9,7 +9,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-public class Articulo extends  Producto{
+public class Articulo extends Producto {
+
     private double peso;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)

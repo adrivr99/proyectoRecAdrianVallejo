@@ -1,8 +1,9 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import java.util.ArrayList;
 
 public class ListaArticulos {
+
     private Articulo articulo;
     private int cantidad;
 
@@ -30,20 +31,20 @@ public class ListaArticulos {
         this.cantidad = cantidad;
     }
 
-    // Método para añadir un artículo de la Lista de Articulos dentros de la listaPedidosArticulos
-    // Para ello se selecciona el producto por su id y se pasa al método como parametro
+    // Metodo para a�adir un arti�culo de la Lista de Articulos dentros de la listaPedidosArticulos
+    // Para ello se selecciona el producto por su id y se pasa al metodo como parametro
     // para un vez listado el array, se selecione el articulo que tiene ese id
-    public Articulo addArticuloLista (ArrayList<Articulo> listaArticulos, int elegirProducto){
+    public Articulo addArticuloLista(ArrayList<Articulo> listaArticulos, int elegirProducto) {
         for (int i = 0; i < listaArticulos.size(); i++) {
-            if (listaArticulos.get(i).getProducto() == elegirProducto){
-                return  listaArticulos.get(i);
+            if (listaArticulos.get(i).getProducto() == elegirProducto) {
+                return listaArticulos.get(i);
             }
         }
         return null;
     }
 
     public String toString() {
-        return  "\n" +articulo.getNombre() + " x " + articulo.getPrecio() + "€. Cantidad: " + cantidad + " uds." +
-                "\n-----------------------------------------------------\n";
+        return "\n" + articulo.getNombre() + " x " + articulo.getPrecio() + "€. Cantidad: " + cantidad + " uds."
+                + "\n-----------------------------------------------------\n";
     }
 }

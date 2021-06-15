@@ -1,4 +1,4 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 public class Servicio extends Producto {
+
     private double duracionEstimada; // horas
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)

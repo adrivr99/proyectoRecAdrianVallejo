@@ -1,8 +1,9 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import java.util.ArrayList;
 
 public class Empresa {
+
     private String nombre;
     private String CIF;
     private String direccion;
@@ -74,7 +75,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return  "-----------------------------------------------------\n" +
-                "\t\t\t\t" +nombre + "\n" + direccion + " " + ciudad + ", " + pais +"\nTel: " + telefono;
+        return "-----------------------------------------------------\n"
+                + "\t\t\t\t" + nombre + "\n" + direccion + " " + ciudad + ", " + pais + "\nTel: " + telefono;
     }
 }

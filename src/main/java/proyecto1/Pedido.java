@@ -1,4 +1,4 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pedido {
+
     private String numeroPedido; //
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
@@ -110,13 +111,13 @@ public class Pedido {
         Pedido.contador = contador;
     }
 
-    public Pedido asignarNumeroPedido(Pedido pedido){
-        pedido.setNumeroPedido(this.contador+ "-" + LocalDate.now().getYear());
+    // M�todo para asignar un n�mero de pedido al pedido con un contador de instancias
+    public Pedido asignarNumeroPedido(Pedido pedido) {
+        pedido.setNumeroPedido(this.contador + "-" + LocalDate.now().getYear());
         return pedido;
     }
 
-
-
+    // M�todo para introducir un nif de un cliente
     private static String leerNif() {
         Scanner teclado = new Scanner(System.in);
         String nif = null;
@@ -137,9 +138,9 @@ public class Pedido {
     }
 
     // Método para asignar un cliente al pedido
-    public Cliente asignarCliente(ArrayList<Cliente> listaCliente, String nif){
-        for (Cliente cliente : listaCliente){
-            if (cliente.getNIF().equalsIgnoreCase(nif)){
+    public Cliente asignarCliente(ArrayList<Cliente> listaCliente, String nif) {
+        for (Cliente cliente : listaCliente) {
+            if (cliente.getNIF().equalsIgnoreCase(nif)) {
                 return cliente;
             }
         }
@@ -147,9 +148,9 @@ public class Pedido {
     }
 
     // Método para asignar la direccion de cliente al pedido
-    public String asignarDireccionCliente(ArrayList<Cliente> listaCliente, Pedido pedido){
+    public String asignarDireccionCliente(ArrayList<Cliente> listaCliente, Pedido pedido) {
         for (int i = 0; i < listaCliente.size(); i++) {
-            if (listaCliente.get(i).getNIF().equalsIgnoreCase(String.valueOf(pedido.getCliente().getNIF()))){
+            if (listaCliente.get(i).getNIF().equalsIgnoreCase(String.valueOf(pedido.getCliente().getNIF()))) {
                 pedido.setDireccionCliente(listaCliente.get(i).getDireccion());
                 return pedido.getDireccionCliente();
             }
@@ -158,22 +159,22 @@ public class Pedido {
     }
 
     // Método para asignar el metodo de pago al pedido
-    public String asignarPago(String metodoPago){
-            if (metodoPago.equalsIgnoreCase("transferencia") || metodoPago.equalsIgnoreCase("tarjeta")){
-                return metodoPago;
-            }else {
-                return null;
-            }
+    public String asignarPago(String metodoPago) {
+        if (metodoPago.equalsIgnoreCase("transferencia") || metodoPago.equalsIgnoreCase("tarjeta")) {
+            return metodoPago;
+        } else {
+            return null;
+        }
     }
 
     // Método booleano que devolverá true o false para asignar si el pedido será enviado (true)
     // o si será recogido en tienda (false)
-    public boolean asignarEnvio(int envio){
+    public boolean asignarEnvio(int envio) {
         boolean envioBoolean = false;
         if (envio == 1) {
             envioBoolean = false;
             return envioBoolean;
-        } else if (envio == 2){
+        } else if (envio == 2) {
             envioBoolean = true;
             return envioBoolean;
         }
@@ -182,17 +183,16 @@ public class Pedido {
 
     @Override
     public String toString() {
-            return
-                empresa +
-                "\n-----------------------------------------------------"+
-                "\nNumero Pedido: " + numeroPedido +
-                "\nFecha: " + fechaPedido + "\n"+
-                cliente +
-                listaArticulos +
-                listaServicios +
-                "\nForma de pago: " + formaPago +
-                "\nEnvio: " + envio +
-                "\n-----------------------------------------------------";
+        return empresa
+                + "\n-----------------------------------------------------"
+                + "\nNumero Pedido: " + numeroPedido
+                + "\nFecha: " + fechaPedido + "\n"
+                + cliente
+                + listaArticulos
+                + listaServicios
+                + "\nForma de pago: " + formaPago
+                + "\nEnvio: " + envio
+                + "\n-----------------------------------------------------";
 
     }
 }
