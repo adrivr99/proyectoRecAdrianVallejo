@@ -7,22 +7,26 @@ public class Empresa {
     private String nombre;
     private String CIF;
     private String direccion;
-    private String ciudad;
-    private String pais;
     private int telefono = 9;
+    private ArrayList <Cliente> listaClientes;
+    private ArrayList <Pedido> listaPedidos;
+    private ArrayList <Producto> listaProductos;
 
     // Constructor sin parámetros
     public Empresa() {
     }
 
     // Constructor parametrizado
-    public Empresa(String nombre, String CIF, String direccion, String ciudad, String pais, int telefono) {
+
+
+    public Empresa(String nombre, String CIF, String direccion, int telefono, ArrayList<Cliente> listaClientes, ArrayList<Pedido> listaPedidos, ArrayList<Producto> listaProductos) {
         this.nombre = nombre;
         this.CIF = CIF;
         this.direccion = direccion;
-        this.ciudad = ciudad;
-        this.pais = pais;
         this.telefono = telefono;
+        this.listaClientes = listaClientes;
+        this.listaPedidos = listaPedidos;
+        this.listaProductos = listaProductos;
     }
 
     public String getNombre() {
@@ -49,20 +53,28 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 
-    public String getPais() {
-        return pais;
+    public ArrayList<Pedido> getListaPedidos() {
+        return listaPedidos;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setListaPedidos(ArrayList<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
+    }
+
+    public ArrayList<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(ArrayList<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
     }
 
     public int getTelefono() {
@@ -76,6 +88,6 @@ public class Empresa {
     @Override
     public String toString() {
         return "-----------------------------------------------------\n"
-                + "\t\t\t\t" + nombre + "\n" + direccion + " " + ciudad + ", " + pais + "\nTel: " + telefono;
+                + "\t\t\t\t" + nombre + "\n" + direccion + /*" " + ciudad + ", " + pais + */"\nTel: " + telefono;
     }
 }

@@ -1,0 +1,24 @@
+[ {
+  "numeroPedido" : "1-2021",
+  "fechaPedido" : "2021-06-16",
+  "formaPago" : "tarjeta",
+  "direccionCliente" : "Calle del cuervo, 10 Estepona, España",
+  "envio" : false,
+  "listaArticulos" : [ {
+    "articulo" : {
+      "producto" : 1,
+      "nombre" : "Iphone 12",
+      "precio" : 699.99,
+      "peso" : 0.1,
+      "fechaFabricacion" : "2020-01-01"
+    },
+    "cantidad" : 1
+  } ],
+  "listaServicios" : [ ],
+  "cliente" : {
+    "nombre" : "Juan Carlos",
+    "apellidos" : "Vico",
+    "direccion" : "Calle del cuervo, 10 Estepona, España",
+    "nif" : "12345678B"
+  }
+} ]

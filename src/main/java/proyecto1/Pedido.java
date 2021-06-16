@@ -16,8 +16,7 @@ public class Pedido {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate fechaPedido; //
-    private Empresa empresa; //
+    private LocalDate fechaPedido; // //
     private String formaPago; //
     private String direccionCliente; //
     private boolean envio; //
@@ -45,14 +44,6 @@ public class Pedido {
 
     public void setFechaPedido(LocalDate fechaPedido) {
         this.fechaPedido = fechaPedido;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
     }
 
     public String getFormaPago() {
@@ -111,13 +102,13 @@ public class Pedido {
         Pedido.contador = contador;
     }
 
-    // Método para asignar un número de pedido al pedido con un contador de instancias
+    // Mï¿½todo para asignar un nï¿½mero de pedido al pedido con un contador de instancias
     public Pedido asignarNumeroPedido(Pedido pedido) {
         pedido.setNumeroPedido(this.contador + "-" + LocalDate.now().getYear());
         return pedido;
     }
 
-    // Método para introducir un nif de un cliente
+    // Mï¿½todo para introducir un nif de un cliente
     private static String leerNif() {
         Scanner teclado = new Scanner(System.in);
         String nif = null;
@@ -183,8 +174,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return empresa
-                + "\n-----------------------------------------------------"
+        return "\n-----------------------------------------------------"
                 + "\nNumero Pedido: " + numeroPedido
                 + "\nFecha: " + fechaPedido + "\n"
                 + cliente

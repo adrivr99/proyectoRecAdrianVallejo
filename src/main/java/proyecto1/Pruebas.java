@@ -1,4 +1,4 @@
-package main.java.proyecto1;
+package proyecto1;
 
 import java.io.File;
 

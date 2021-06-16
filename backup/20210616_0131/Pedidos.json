@@ -1,0 +1,59 @@
+[ {
+  "numeroPedido" : "1-2021",
+  "fechaPedido" : "2021-06-16",
+  "empresa" : {
+    "nombre" : "Rocket Mouse",
+    "direccion" : "Avenida Espa�a, 10 La L�nea de la Concepci�n, Espa�a",
+    "telefono" : 956202122,
+    "cif" : "B - 76365789"
+  },
+  "formaPago" : "tarjeta",
+  "direccionCliente" : "Calle del cuervo, 10 Estepona, España",
+  "envio" : true,
+  "listaArticulos" : [ {
+    "articulo" : {
+      "producto" : 1,
+      "nombre" : "Iphone 12",
+      "precio" : 699.99,
+      "peso" : 0.1,
+      "fechaFabricacion" : "2020-01-01"
+    },
+    "cantidad" : 1
+  } ],
+  "listaServicios" : [ ],
+  "cliente" : {
+    "nombre" : "Juan Carlos",
+    "apellidos" : "Vico",
+    "direccion" : "Calle del cuervo, 10 Estepona, España",
+    "nif" : "12345678B"
+  }
+}, {
+  "numeroPedido" : "2-2021",
+  "fechaPedido" : "2021-06-16",
+  "empresa" : {
+    "nombre" : "Rocket Mouse",
+    "direccion" : "Avenida Espa�a, 10 La L�nea de la Concepci�n, Espa�a",
+    "telefono" : 956202122,
+    "cif" : "B - 76365789"
+  },
+  "formaPago" : "tarjeta",
+  "direccionCliente" : "Calle Gibraltar, 3 La Línea de la Concepción, España",
+  "envio" : false,
+  "listaArticulos" : [ {
+    "articulo" : {
+      "producto" : 5,
+      "nombre" : "Xbox One serie S",
+      "precio" : 299.99,
+      "peso" : 1.0,
+      "fechaFabricacion" : "2020-10-10"
+    },
+    "cantidad" : 8
+  } ],
+  "listaServicios" : [ ],
+  "cliente" : {
+    "nombre" : "Juan",
+    "apellidos" : "Perez Galdos",
+    "direccion" : "Calle Gibraltar, 3 La Línea de la Concepción, España",
+    "nif" : "06618023A"
+  }
+} ]

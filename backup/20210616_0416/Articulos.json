@@ -1,0 +1,37 @@
+[ {
+  "producto" : 1,
+  "nombre" : "Iphone 12",
+  "precio" : 699.99,
+  "peso" : 0.1,
+  "fechaFabricacion" : "2020-01-01"
+}, {
+  "producto" : 2,
+  "nombre" : "Intel Core i7",
+  "precio" : 350.0,
+  "peso" : 0.015,
+  "fechaFabricacion" : "2019-03-15"
+}, {
+  "producto" : 3,
+  "nombre" : "Ryzen 5",
+  "precio" : 275.99,
+  "peso" : 0.015,
+  "fechaFabricacion" : "2019-05-27"
+}, {
+  "producto" : 4,
+  "nombre" : "PlayStation 5",
+  "precio" : 399.99,
+  "peso" : 1.0,
+  "fechaFabricacion" : "2020-09-15"
+}, {
+  "producto" : 5,
+  "nombre" : "Xbox One serie S",
+  "precio" : 299.99,
+  "peso" : 1.0,
+  "fechaFabricacion" : "2020-10-10"
+}, {
+  "producto" : 20,
+  "nombre" : "Libro de ProgramaciÃ³n",
+  "precio" : 50.0,
+  "peso" : 10.0,
+  "fechaFabricacion" : "2021-06-16"
+} ]

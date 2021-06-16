@@ -1,0 +1,21 @@
+-----------------------------------------------------
+				Rocket Mouse
+Avenida Espa�a, 10 La L�nea de la Concepci�n, Espa�a
+Tel: 956202122
+-----------------------------------------------------
+Numero Pedido: 1-2021
+Fecha: 2021-06-16
+-----------------------------------------------------
+Cliente: Juan Carlos Vico, DNI:12345678B
+Dirección Cliente: Calle del cuervo, 10 Estepona, España 
+-----------------------------------------------------
+[
+Libro de ProgramaciÃ³n x 50.0€. Cantidad: 100 uds.
+-----------------------------------------------------
+][
+Piratear PlayStation 4 x 40.0€. Cantidad: 5 uds.
+-----------------------------------------------------
+]
+Forma de pago: transferencia
+Envio: true
+-----------------------------------------------------

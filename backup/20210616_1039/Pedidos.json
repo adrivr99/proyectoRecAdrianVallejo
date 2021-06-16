@@ -1,0 +1,88 @@
+[ {
+  "numeroPedido" : "1-2021",
+  "fechaPedido" : [ 2021, 6, 16 ],
+  "empresa" : {
+    "nombre" : "Rocket Mouse",
+    "direccion" : "Avenida Espa�a, 10 La L�nea de la Concepci�n, Espa�a",
+    "telefono" : 956202122,
+    "cif" : "B - 76365789"
+  },
+  "formaPago" : "tarjeta",
+  "direccionCliente" : "Calle Madrid, 106 San Roque, España",
+  "envio" : false,
+  "listaArticulos" : [ {
+    "articulo" : {
+      "producto" : 1,
+      "nombre" : "Iphone 12",
+      "precio" : 699.99,
+      "peso" : 0.1,
+      "fechaFabricacion" : [ 2020, 1, 1 ]
+    },
+    "cantidad" : 1
+  }, {
+    "articulo" : {
+      "producto" : 3,
+      "nombre" : "Ryzen 5",
+      "precio" : 275.99,
+      "peso" : 0.015,
+      "fechaFabricacion" : [ 2019, 5, 27 ]
+    },
+    "cantidad" : 3
+  } ],
+  "listaServicios" : [ {
+    "servicio" : {
+      "producto" : 9,
+      "nombre" : "Piratear PlayStation 4",
+      "precio" : 40.0,
+      "duracionEstimada" : 3.0,
+      "fechaComienzo" : [ 2021, 7, 1 ],
+      "fechaFin" : [ 2021, 7, 2 ]
+    },
+    "cantidad" : 9
+  }, {
+    "servicio" : {
+      "producto" : 8,
+      "nombre" : "Piratear Nintendo DS",
+      "precio" : 20.0,
+      "duracionEstimada" : 1.5,
+      "fechaComienzo" : [ 2021, 6, 30 ],
+      "fechaFin" : [ 2021, 7, 1 ]
+    },
+    "cantidad" : 2
+  } ],
+  "cliente" : {
+    "nombre" : "Roberto",
+    "apellidos" : "Jimenez Moreno",
+    "direccion" : "Calle Madrid, 106 San Roque, España",
+    "nif" : "08274785Y"
+  }
+}, {
+  "numeroPedido" : "2-2021",
+  "fechaPedido" : [ 2021, 6, 16 ],
+  "empresa" : {
+    "nombre" : "Rocket Mouse",
+    "direccion" : "Avenida Espa�a, 10 La L�nea de la Concepci�n, Espa�a",
+    "telefono" : 956202122,
+    "cif" : "B - 76365789"
+  },
+  "formaPago" : "transferencia",
+  "direccionCliente" : "Pasaje Limoneros, 7 Algeciras, España",
+  "envio" : true,
+  "listaArticulos" : [ {
+    "articulo" : {
+      "producto" : 4,
+      "nombre" : "PlayStation 5",
+      "precio" : 399.99,
+      "peso" : 1.0,
+      "fechaFabricacion" : [ 2020, 9, 15 ]
+    },
+    "cantidad" : 1
+  } ],
+  "listaServicios" : [ ],
+  "cliente" : {
+    "nombre" : "Blanca",
+    "apellidos" : "Del Rio",
+    "direccion" : "Pasaje Limoneros, 7 Algeciras, España",
+    "nif" : "39783005C"
+  }
+} ]

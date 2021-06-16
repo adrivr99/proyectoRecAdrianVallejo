@@ -1,0 +1,93 @@
+[ {
+  "producto" : 1,
+  "nombre" : "Iphone 12",
+  "precio" : 699.99,
+  "peso" : 0.1,
+  "fechaFabricacion" : "2020-01-01"
+}, {
+  "producto" : 2,
+  "nombre" : "Intel Core i7",
+  "precio" : 350.0,
+  "peso" : 0.015,
+  "fechaFabricacion" : "2019-03-15"
+}, {
+  "producto" : 3,
+  "nombre" : "Ryzen 5",
+  "precio" : 275.99,
+  "peso" : 0.015,
+  "fechaFabricacion" : "2019-05-27"
+}, {
+  "producto" : 4,
+  "nombre" : "PlayStation 5",
+  "precio" : 399.99,
+  "peso" : 1.0,
+  "fechaFabricacion" : "2020-09-15"
+}, {
+  "producto" : 5,
+  "nombre" : "Xbox One serie S",
+  "precio" : 299.99,
+  "peso" : 1.0,
+  "fechaFabricacion" : "2020-10-10"
+}, {
+  "producto" : 20,
+  "nombre" : "Libro de ProgramaciÃ³n",
+  "precio" : 50.0,
+  "peso" : 10.0,
+  "fechaFabricacion" : "2021-06-16"
+}, {
+  "producto" : 6,
+  "nombre" : "Creación Pagina Web Prestashop",
+  "precio" : 850.0,
+  "duracionEstimada" : 100.0,
+  "fechaComienzo" : "2021-06-21",
+  "fechaFin" : "2021-06-29"
+}, {
+  "producto" : 7,
+  "nombre" : "Formateo Ordenador",
+  "precio" : 30.0,
+  "duracionEstimada" : 4.0,
+  "fechaComienzo" : "2021-06-18",
+  "fechaFin" : "2021-06-19"
+}, {
+  "producto" : 8,
+  "nombre" : "Piratear Nintendo DS",
+  "precio" : 20.0,
+  "duracionEstimada" : 1.5,
+  "fechaComienzo" : "2021-06-30",
+  "fechaFin" : "2021-07-01"
+}, {
+  "producto" : 9,
+  "nombre" : "Piratear PlayStation 4",
+  "precio" : 40.0,
+  "duracionEstimada" : 3.0,
+  "fechaComienzo" : "2021-07-01",
+  "fechaFin" : "2021-07-02"
+}, {
+  "producto" : 10,
+  "nombre" : "Instalación Office 2016",
+  "precio" : 10.0,
+  "duracionEstimada" : 0.5,
+  "fechaComienzo" : "2021-06-19",
+  "fechaFin" : "2021-06-20"
+}, {
+  "producto" : 11,
+  "nombre" : "Montaje Ordenador",
+  "precio" : 50.0,
+  "duracionEstimada" : 8.0,
+  "fechaComienzo" : "2021-07-04",
+  "fechaFin" : "2021-07-06"
+}, {
+  "producto" : 12,
+  "nombre" : "Logo Empresa",
+  "precio" : 120.0,
+  "duracionEstimada" : 3.5,
+  "fechaComienzo" : "2021-07-07",
+  "fechaFin" : "2021-07-08"
+}, {
+  "producto" : 13,
+  "nombre" : "Copia Seguridad Ordenador",
+  "precio" : 80.0,
+  "duracionEstimada" : 6.0,
+  "fechaComienzo" : "2021-07-07",
+  "fechaFin" : "2021-07-10"
+} ]

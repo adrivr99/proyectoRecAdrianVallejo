@@ -1,0 +1,46 @@
+[ {
+  "nombre" : "Juan",
+  "apellidos" : "Perez Galdos",
+  "direccion" : "Calle Gibraltar, 3 La Línea de la Concepción, España",
+  "nif" : "06618023A"
+}, {
+  "nombre" : "Pepe",
+  "apellidos" : "Ruiz Lopez",
+  "direccion" : "Calle San Pablo, 23 La Línea de la Concepción, España",
+  "nif" : "57862191X"
+}, {
+  "nombre" : "Luis",
+  "apellidos" : "Rodriguez Santos",
+  "direccion" : "Plaza Cruz Herrera, 15 San Roque, España",
+  "nif" : "53346391F"
+}, {
+  "nombre" : "Maria",
+  "apellidos" : "Alvarez Perez",
+  "direccion" : "Calle Carboneros, 56 Algeciras, España",
+  "nif" : "49164249R"
+}, {
+  "nombre" : "Lucia",
+  "apellidos" : "Carrillo Jimenez",
+  "direccion" : "Calle Canarias, 33 La Línea de la Concepción, España",
+  "nif" : "04031010F"
+}, {
+  "nombre" : "Blanca",
+  "apellidos" : "Del Rio",
+  "direccion" : "Pasaje Limoneros, 7 Algeciras, España",
+  "nif" : "39783005C"
+}, {
+  "nombre" : "Roberto",
+  "apellidos" : "Jimenez Moreno",
+  "direccion" : "Calle Madrid, 106 San Roque, España",
+  "nif" : "08274785Y"
+}, {
+  "nombre" : "Susana",
+  "apellidos" : "Coello Rico",
+  "direccion" : "Avenida España, 34 La Línea de la Concepción, España",
+  "nif" : "74151152A"
+}, {
+  "nombre" : "Juan Carlos",
+  "apellidos" : "Vico",
+  "direccion" : "Calle del cuervo, 10 Estepona, España",
+  "nif" : "12345678B"
+} ]

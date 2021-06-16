@@ -1,19 +1,18 @@
 -----------------------------------------------------
 				Rocket Mouse
-Avenida España, 10 La Línea de la Concepción, España
+Avenida Espa�a, 10 La L�nea de la Concepci�n, Espa�a
 Tel: 956202122
 -----------------------------------------------------
-			Fecha:2021-06-14
-CLiente: Roberto Jimenez Moreno			2-2021
-Direccion Cliente: Calle Madrid, 106 San Roque, España
+Numero Pedido: 2-2021
+Fecha: 2021-06-16
 -----------------------------------------------------
-[][
-Formateo Ordenador x 30.0€. Cantidad: 20 uds.
+Cliente: Juan Perez Galdos, DNI:06618023A
+Dirección Cliente: Calle Gibraltar, 3 La Línea de la Concepción, España 
 -----------------------------------------------------
-, 
-Instalación Office 2016 x 10.0€. Cantidad: 50 uds.
+[
+Xbox One serie S x 299.99€. Cantidad: 8 uds.
 -----------------------------------------------------
-]
-Forma de pago: transferencia
+][]
+Forma de pago: tarjeta
 Envio: false
 -----------------------------------------------------

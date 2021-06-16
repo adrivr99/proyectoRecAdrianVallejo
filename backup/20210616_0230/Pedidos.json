@@ -1,0 +1,24 @@
+[ {
+  "numeroPedido" : "1-2021",
+  "fechaPedido" : "2021-06-16",
+  "formaPago" : "tarjeta",
+  "direccionCliente" : "Calle Gibraltar, 3 La Línea de la Concepción, España",
+  "envio" : false,
+  "listaArticulos" : [ {
+    "articulo" : {
+      "producto" : 1,
+      "nombre" : "Iphone 12",
+      "precio" : 699.99,
+      "peso" : 0.1,
+      "fechaFabricacion" : "2020-01-01"
+    },
+    "cantidad" : 1
+  } ],
+  "listaServicios" : [ ],
+  "cliente" : {
+    "nombre" : "Juan",
+    "apellidos" : "Perez Galdos",
+    "direccion" : "Calle Gibraltar, 3 La Línea de la Concepción, España",
+    "nif" : "06618023A"
+  }
+} ]

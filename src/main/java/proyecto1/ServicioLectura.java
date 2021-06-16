@@ -108,7 +108,7 @@ public class ServicioLectura {
         }
     }
 
-    // Método para generar un archivo TXT de un pedido
+    // Mï¿½todo para generar un archivo TXT de un pedido
     public static void generarTxt(Pedido pedido) {
         try ( BufferedWriter flujo = new BufferedWriter(new FileWriter(pedido.getNumeroPedido() + ".txt", true))) {
 
@@ -125,7 +125,7 @@ public class ServicioLectura {
         }
     }
 
-    // Método para crear un directorio pasandole la ruta como parámetro
+    // Mï¿½todo para crear un directorio pasandole la ruta como parï¿½metro
     public static void crearDirectorio(String ruta) {
 
         Path directory = Paths.get(ruta);
@@ -142,7 +142,7 @@ public class ServicioLectura {
 
     }
 
-    // Método para listar el contenido de un directorio pasandole la ruta por parámetros
+    // Mï¿½todo para listar el contenido de un directorio pasandole la ruta por parï¿½metros
     public static void listarDirectorio(String ruta) {
         File f = new File(ruta);
         if (f.exists()) {
@@ -157,19 +157,53 @@ public class ServicioLectura {
         }
     }
 
-    // Método para generar un archivo JSON
-    public static void generarJSON(ArrayList<Pedido> listaPedidos, String directorio) throws IOException {
+    // Mï¿½todo para generar un archivo JSON
+    public static void generarJSON(Empresa empresa, String directorio, ArrayList<Articulo> listaArticulos, ArrayList<Servicio> listaServicios) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
         mapeador.writeValue(new File("./backup/" + directorio + "/Pedidos.json"),
-                listaPedidos);
+                empresa.getListaPedidos());
+        mapeador.writeValue(new File("./backup/" + directorio + "/Clientes.json"),
+                empresa.getListaClientes());
+        mapeador.writeValue(new File("./backup/" + directorio + "/Articulos.json"),
+                listaArticulos);
+        mapeador.writeValue(new File("./backup/" + directorio + "/Servicios.json"),
+                listaServicios);
     }
 
-    // Método para leer un archivo JSON y devuelve una lista de pedidos
-    public static ArrayList<Pedido> leerJSON(ArrayList<Pedido> listaPedidos, String copiaEleccion) throws IOException {
+    // Mï¿½todo para leer un archivo JSON y devuelve una lista de pedidos
+    public static ArrayList<Pedido> leerJSONPedidos(String copiaEleccion) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
-        listaPedidos = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"),
+        ArrayList<Pedido> lista = new ArrayList<>();
+        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"),
                 mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Pedido.class));
-        return listaPedidos;
+
+        return lista;
+    }
+
+    public static ArrayList<Cliente> leerJSONClientes(String copiaEleccion) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        ArrayList<Cliente> lista = new ArrayList<>();
+        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Clientes.json"),
+                mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Cliente.class));
+
+        return lista;
+    }
+
+    public static ArrayList<Articulo> leerJSONArticulos(String copiaEleccion) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        ArrayList<Articulo> lista = new ArrayList<>();
+        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Articulos.json"),
+                mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Articulo.class));
+
+        return lista;
+    }
+    public static ArrayList<Servicio> leerJSONServicios(String copiaEleccion) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        ArrayList<Servicio> lista = new ArrayList<>();
+        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Servicios.json"),
+                mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Servicio.class));
+
+        return lista;
     }
 }
