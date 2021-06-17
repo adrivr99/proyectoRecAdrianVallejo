@@ -1,28 +1,33 @@
 package proyecto2;
 
-import java.util.ArrayList;
+import java.util.List;
+import model.*;
 
 public class Empresa {
 
     private String nombre;
     private String CIF;
     private String direccion;
-    //private String ciudad;
-    //private String pais;
     private int telefono = 9;
+    private List <Cliente> listaClientes;
+    private List <Pedido> listaPedidos;
+    private List <Producto> listaProductos;
 
     // Constructor sin parámetros
     public Empresa() {
     }
 
     // Constructor parametrizado
-    public Empresa(String nombre, String CIF, String direccion, /*String ciudad, String pais, */int telefono) {
+
+
+    public Empresa(String nombre, String CIF, String direccion, int telefono, List<Cliente> listaClientes, List<Pedido> listaPedidos, List<Producto> listaProductos) {
         this.nombre = nombre;
         this.CIF = CIF;
         this.direccion = direccion;
-        /*this.ciudad = ciudad;
-        this.pais = pais;*/
         this.telefono = telefono;
+        this.listaClientes = listaClientes;
+        this.listaPedidos = listaPedidos;
+        this.listaProductos = listaProductos;
     }
 
     public String getNombre() {
@@ -48,23 +53,31 @@ public class Empresa {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-/*
-    public String getCiudad() {
-        return ciudad;
+
+    public List<Cliente> getListaClientes() {
+        return listaClientes;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setListaClientes(List<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 
-    public String getPais() {
-        return pais;
+    public List<Pedido> getListaPedidos() {
+        return listaPedidos;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setListaPedidos(List<Pedido> listaPedidos) {
+        this.listaPedidos = listaPedidos;
     }
-*/
+
+    public List<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(List<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+
     public int getTelefono() {
         return telefono;
     }

@@ -9,104 +9,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.Cliente;
+import model.Producto;
+import model.Pedido;
 
 public class ServicioLectura {
-
-    public static ArrayList<Cliente> CSVClientes(String idFichero) {
-        // Variables para guardar los datos que se van leyendo
-        String[] tokens;
-        String linea;
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
-
-        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
-        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
-        // las operaciones con el archivo
-        try ( Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
-            // hasNextLine devuelve true mientras haya líneas por leer
-            while (datosFichero.hasNextLine()) {
-                // Guarda la línea completa en un String
-                linea = datosFichero.nextLine();
-                // Se guarda en el array de String cada elemento de la
-                // línea en función del carácter separador de campos del fichero CSV
-                tokens = linea.split(";");
-                Cliente cliente = new Cliente();
-                cliente.setNIF(tokens[0]);
-                cliente.setNombre(tokens[1]);
-                cliente.setApellidos(tokens[2]);
-                cliente.setDireccion(tokens[3]);
-                listaClientes.add(cliente);
-            }
-            return listaClientes;
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    public static ArrayList<Articulo> CSVArticulos(String idFichero) {
-        // Variables para guardar los datos que se van leyendo
-        String[] tokens;
-        String linea;
-        ArrayList<Articulo> listaArticulos = new ArrayList<>();
-
-        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
-        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
-        // las operaciones con el archivo
-        try ( Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
-            // hasNextLine devuelve true mientras haya líneas por leer
-            while (datosFichero.hasNextLine()) {
-                // Guarda la línea completa en un String
-                linea = datosFichero.nextLine();
-                // Se guarda en el array de String cada elemento de la
-                // línea en función del carácter separador de campos del fichero CSV
-                tokens = linea.split(";");
-                Articulo articulo = new Articulo();
-                articulo.setPeso(Double.parseDouble(tokens[0]));
-                articulo.setFechaFabricacion(LocalDate.parse(tokens[1]));
-                articulo.setProducto(Integer.parseInt(tokens[2]));
-                articulo.setNombre(tokens[3]);
-                articulo.setPrecio(Double.parseDouble(tokens[4]));
-                listaArticulos.add(articulo);
-            }
-            return listaArticulos;
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    public static ArrayList<Servicio> CSVServicios(String idFichero) {
-        // Variables para guardar los datos que se van leyendo
-        String[] tokens;
-        String linea;
-        ArrayList<Servicio> listaServicios = new ArrayList<>();
-
-        // Inicialización del flujo "datosFichero" en función del archivo llamado "idFichero"
-        // Estructura try-with-resources. Permite cerrar los recursos una vez finalizadas
-        // las operaciones con el archivo
-        try ( Scanner datosFichero = new Scanner(new File(idFichero), "ISO-8859-1")) {
-            // hasNextLine devuelve true mientras haya líneas por leer
-            while (datosFichero.hasNextLine()) {
-                // Guarda la línea completa en un String
-                linea = datosFichero.nextLine();
-                // Se guarda en el array de String cada elemento de la
-                // línea en función del carácter separador de campos del fichero CSV
-                tokens = linea.split(";");
-                Servicio servicio = new Servicio();
-                servicio.setDuracionEstimada(Double.parseDouble(tokens[0]));
-                servicio.setFechaComienzo(LocalDate.parse(tokens[1]));
-                servicio.setFechaFin(LocalDate.parse(tokens[2]));
-                servicio.setProducto(Integer.parseInt(tokens[3]));
-                servicio.setNombre(tokens[4]);
-                servicio.setPrecio(Double.parseDouble(tokens[5]));
-                listaServicios.add(servicio);
-            }
-            return listaServicios;
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
 
     // M�todo para generar un archivo TXT de un pedido
     public static void generarTxt(Pedido pedido) {
@@ -158,18 +65,42 @@ public class ServicioLectura {
     }
 
     // M�todo para generar un archivo JSON
-    public static void generarJSON(ArrayList<Pedido> listaPedidos, String directorio) throws IOException {
+    public static void generarJSON(Empresa empresa, String directorio, ArrayList<Producto> listaProductos) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
-        mapeador.writeValue(new File("./backup/" + directorio + "/Pedidos.json"),
-                listaPedidos);
+        mapeador.writeValue(new File("./backupbackupBBDD/" + directorio + "/Pedidos.json"),
+                empresa.getListaPedidos());
+        mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Clientes.json"),
+                empresa.getListaClientes());
+        mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Productos.json"),
+                listaProductos);
     }
 
     // M�todo para leer un archivo JSON y devuelve una lista de pedidos
-    public static ArrayList<Pedido> leerJSON(ArrayList<Pedido> listaPedidos, String copiaEleccion) throws IOException {
+    public static ArrayList<Pedido> leerJSONPedidos(String copiaEleccion) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
-        listaPedidos = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"),
+        ArrayList<Pedido> lista = new ArrayList<>();
+        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"),
                 mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Pedido.class));
-        return listaPedidos;
+
+        return lista;
+    }
+
+    public static ArrayList<Cliente> leerJSONClientes(String copiaEleccion) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        ArrayList<Cliente> lista = new ArrayList<>();
+        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Clientes.json"),
+                mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Cliente.class));
+
+        return lista;
+    }
+
+    public static ArrayList<Producto> leerJSONArticulos(String copiaEleccion) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        ArrayList<Producto> lista = new ArrayList<>();
+        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Articulos.json"),
+                mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Producto.class));
+
+        return lista;
     }
 }
