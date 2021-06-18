@@ -12,6 +12,7 @@ import java.util.Scanner;
 import model.Cliente;
 import model.Producto;
 import model.Pedido;
+import proyecto2.Empresa.*;
 
 public class ServicioLectura {
 
@@ -65,22 +66,22 @@ public class ServicioLectura {
     }
 
     // M�todo para generar un archivo JSON
-    public static void generarJSON(Empresa empresa, String directorio, ArrayList<Producto> listaProductos) throws IOException {
+    public static void generarJSON(Empresa empresa, String directorio) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
-        mapeador.writeValue(new File("./backupbackupBBDD/" + directorio + "/Pedidos.json"),
+        mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Pedidos.json"),
                 empresa.getListaPedidos());
         mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Clientes.json"),
                 empresa.getListaClientes());
         mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Productos.json"),
-                listaProductos);
+                empresa.getListaProductos());
     }
 
     // M�todo para leer un archivo JSON y devuelve una lista de pedidos
     public static ArrayList<Pedido> leerJSONPedidos(String copiaEleccion) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         ArrayList<Pedido> lista = new ArrayList<>();
-        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Pedidos.json"),
+        lista = mapeador.readValue(new File("./backupBBDD/" + copiaEleccion + "/Pedidos.json"),
                 mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Pedido.class));
 
         return lista;
@@ -89,16 +90,16 @@ public class ServicioLectura {
     public static ArrayList<Cliente> leerJSONClientes(String copiaEleccion) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         ArrayList<Cliente> lista = new ArrayList<>();
-        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Clientes.json"),
+        lista = mapeador.readValue(new File("./backupBBDD/" + copiaEleccion + "/Clientes.json"),
                 mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Cliente.class));
 
         return lista;
     }
 
-    public static ArrayList<Producto> leerJSONArticulos(String copiaEleccion) throws IOException {
+    public static ArrayList<Producto> leerJSONProductos(String copiaEleccion) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         ArrayList<Producto> lista = new ArrayList<>();
-        lista = mapeador.readValue(new File("./backup/" + copiaEleccion + "/Articulos.json"),
+        lista = mapeador.readValue(new File("./backupBBDD/" + copiaEleccion + "/Productos.json"),
                 mapeador.getTypeFactory().constructCollectionType(ArrayList.class, Producto.class));
 
         return lista;

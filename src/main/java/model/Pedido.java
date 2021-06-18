@@ -20,7 +20,7 @@ public class Pedido implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String numeroPedido;
+	private int idPedido;
 
 	private String direccionCliente;
 
@@ -31,6 +31,10 @@ public class Pedido implements Serializable {
 
 	private String formaPago;
 
+	private String numeroPedido;
+	
+	private static int contador;
+
 	//bi-directional many-to-one association to Listaproducto
 	@OneToMany(mappedBy="pedido")
 	private List<Listaproducto> listaproductos;
@@ -39,19 +43,17 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="cliente")
 	private Cliente clienteBean;
-	
-	private static int contador;
 
 	public Pedido() {
 		contador++;
 	}
 
-	public String getNumeroPedido() {
-		return this.numeroPedido;
+	public int getIdPedido() {
+		return this.idPedido;
 	}
 
-	public void setNumeroPedido(String numeroPedido) {
-		this.numeroPedido = numeroPedido;
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
 	}
 
 	public String getDireccionCliente() {
@@ -86,6 +88,14 @@ public class Pedido implements Serializable {
 		this.formaPago = formaPago;
 	}
 
+	public String getNumeroPedido() {
+		return this.numeroPedido;
+	}
+
+	public void setNumeroPedido(String numeroPedido) {
+		this.numeroPedido = numeroPedido;
+	}
+
 	public List<Listaproducto> getListaproductos() {
 		return this.listaproductos;
 	}
@@ -111,22 +121,39 @@ public class Pedido implements Serializable {
 	public Cliente getClienteBean() {
 		return this.clienteBean;
 	}
+	
+	public Pedido asignarNumeroPedido(Pedido pedido) {
+        pedido.setNumeroPedido(this.contador + "-" + LocalDate.now().getYear());
+        return pedido;
+    }
 
 	public void setClienteBean(Cliente clienteBean) {
 		this.clienteBean = clienteBean;
 	}
-	
-	public static int getContador() {
-        return contador;
-    }
 
-    public static void setContador(int contador) {
-        Pedido.contador = contador;
-    }
-    
-    public Pedido asignarNumeroPedido(Pedido pedido) {
-        pedido.setNumeroPedido(this.contador + "-" + LocalDate.now().getYear());
-        return pedido;
-    }
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido [idPedido=");
+		builder.append(idPedido);
+		builder.append(", direccionCliente=");
+		builder.append(direccionCliente);
+		builder.append(", envio=");
+		builder.append(envio);
+		builder.append(", fechaPedido=");
+		builder.append(fechaPedido);
+		builder.append(", formaPago=");
+		builder.append(formaPago);
+		builder.append(", numeroPedido=");
+		builder.append(numeroPedido);
+		builder.append(", listaproductos=");
+		builder.append(listaproductos);
+		/*builder.append(", clienteBean=");
+		builder.append(clienteBean);
+		builder.append("]");*/
+		return builder.toString();
+	}
+	
+	
 
 }

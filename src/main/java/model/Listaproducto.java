@@ -22,7 +22,7 @@ public class Listaproducto implements Serializable {
 
 	//bi-directional many-to-one association to Pedido
 	@ManyToOne
-	@JoinColumn(name="numeroPedido")
+	@JoinColumn(name="idPedido")
 	private Pedido pedido;
 
 	//bi-directional many-to-one association to Producto
@@ -64,5 +64,22 @@ public class Listaproducto implements Serializable {
 	public void setProductoBean(Producto productoBean) {
 		this.productoBean = productoBean;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Listaproducto [id=");
+		builder.append(id);
+		builder.append(", cantidad=");
+		builder.append(cantidad);
+		builder.append(", pedido=");
+		builder.append(pedido.getIdPedido());
+		builder.append(", productoBean=");
+		builder.append(productoBean.getProducto());
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 
 }

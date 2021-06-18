@@ -1,0 +1,71 @@
+[ {
+  "idCliente" : 1,
+  "apellidos" : "Carrillo Jimenez",
+  "direccion" : "Calle Canarias, 33 La Línea de la Concepción, España",
+  "nif" : "04031010F",
+  "nombre" : "Lucia",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 2,
+  "apellidos" : "Perez Galdos",
+  "direccion" : "Calle Gibraltar, 3 La Línea de la Concepción, España",
+  "nif" : "06618023A",
+  "nombre" : "Juan",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 3,
+  "apellidos" : "Jimenez Moreno",
+  "direccion" : "Calle Madrid, 106 San Roque, España",
+  "nif" : "08274785Y",
+  "nombre" : "Roberto",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 4,
+  "apellidos" : "Del Rio",
+  "direccion" : "Pasaje Limoneros,7 Algeciras, España",
+  "nif" : "39783005C",
+  "nombre" : "Blanca",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 5,
+  "apellidos" : "Alvarez Perez",
+  "direccion" : "Calle Carboneros, 56 Algeciras, España",
+  "nif" : "49164249R",
+  "nombre" : "María",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 6,
+  "apellidos" : "Rodriguez Santos",
+  "direccion" : "Plaza Cruz Herrera, 15 San Roque, España",
+  "nif" : "53346391F",
+  "nombre" : "Luis",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 7,
+  "apellidos" : "Ruiz Lopez",
+  "direccion" : "Calle San Pablo, 23 La Línea de la Concepción, España",
+  "nif" : "57862191X",
+  "nombre" : "Pepe",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 8,
+  "apellidos" : "Coello Rico",
+  "direccion" : "Avenida España, 34 La Línea de la Concepción, España",
+  "nif" : "74151152A",
+  "nombre" : "Susana",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 9,
+  "apellidos" : "Pig",
+  "direccion" : "Calle de Pepa Pig",
+  "nif" : "75965839J",
+  "nombre" : "Pepa",
+  "pedidos" : [ ]
+}, {
+  "idCliente" : 10,
+  "apellidos" : "Macho",
+  "direccion" : "Calle colon, 3 Sabinillas, España",
+  "nif" : "12456387P",
+  "nombre" : "Jose Antonio",
+  "pedidos" : [ ]
+} ]

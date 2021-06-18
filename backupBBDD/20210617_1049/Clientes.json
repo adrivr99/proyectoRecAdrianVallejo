@@ -1,0 +1,49 @@
+[ {
+  "nif" : "04031010F",
+  "apellidos" : "Carrillo Jimenez",
+  "direccion" : "Calle Canarias, 33 La Línea de la Concepción, España",
+  "nombre" : "Lucia",
+  "pedidos" : [ ]
+}, {
+  "nif" : "06618023A",
+  "apellidos" : "Perez Galdos",
+  "direccion" : "Calle Gibraltar, 3 La Línea de la Concepción, España",
+  "nombre" : "Juan",
+  "pedidos" : [ ]
+}, {
+  "nif" : "08274785Y",
+  "apellidos" : "Jimenez Moreno",
+  "direccion" : "Calle Madrid, 106 San Roque, España",
+  "nombre" : "Roberto",
+  "pedidos" : [ ]
+}, {
+  "nif" : "39783005C",
+  "apellidos" : "Del Rio",
+  "direccion" : "Pasaje Limoneros,7 Algeciras, España",
+  "nombre" : "Blanca",
+  "pedidos" : [ ]
+}, {
+  "nif" : "49164249R",
+  "apellidos" : "Alvarez Perez",
+  "direccion" : "Calle Carboneros, 56 Algeciras, España",
+  "nombre" : "María",
+  "pedidos" : [ ]
+}, {
+  "nif" : "53346391F",
+  "apellidos" : "Rodriguez Santos",
+  "direccion" : "Plaza Cruz Herrera, 15 San Roque, España",
+  "nombre" : "Luis",
+  "pedidos" : [ ]
+}, {
+  "nif" : "57862191X",
+  "apellidos" : "Ruiz Lopez",
+  "direccion" : "Calle San Pablo, 23 La Línea de la Concepción, España",
+  "nombre" : "Pepe",
+  "pedidos" : [ ]
+}, {
+  "nif" : "74151152A",
+  "apellidos" : "Coello Rico",
+  "direccion" : "Avenida España, 34 La Línea de la Concepción, España",
+  "nombre" : "Susana",
+  "pedidos" : [ ]
+} ]

@@ -16,11 +16,13 @@ public class Cliente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String nif;
+	private int idCliente;
 
 	private String apellidos;
 
 	private String direccion;
+
+	private String nif;
 
 	private String nombre;
 
@@ -31,12 +33,12 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 
-	public String getNif() {
-		return this.nif;
+	public int getIdCliente() {
+		return this.idCliente;
 	}
 
-	public void setNif(String nif) {
-		this.nif = nif;
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getApellidos() {
@@ -53,6 +55,14 @@ public class Cliente implements Serializable {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public String getNif() {
+		return this.nif;
+	}
+
+	public void setNif(String nif) {
+		this.nif = nif;
 	}
 
 	public String getNombre() {
@@ -88,12 +98,14 @@ public class Cliente implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Cliente [nif=");
-		builder.append(nif);
+		builder.append("Cliente [idCliente=");
+		builder.append(idCliente);
 		builder.append(", apellidos=");
 		builder.append(apellidos);
 		builder.append(", direccion=");
 		builder.append(direccion);
+		builder.append(", nif=");
+		builder.append(nif);
 		builder.append(", nombre=");
 		builder.append(nombre);
 		/*builder.append(", pedidos=");

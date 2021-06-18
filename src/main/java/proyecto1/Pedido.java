@@ -23,6 +23,7 @@ public class Pedido {
     private ArrayList<ListaArticulos> listaArticulos;
     private ArrayList<ListaServicios> listaServicios;
     private Cliente cliente; //
+    private Empresa empresa;
 
     private static int contador = 0;
 
@@ -102,7 +103,15 @@ public class Pedido {
         Pedido.contador = contador;
     }
 
-    // M�todo para asignar un n�mero de pedido al pedido con un contador de instancias
+    public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	// M�todo para asignar un n�mero de pedido al pedido con un contador de instancias
     public Pedido asignarNumeroPedido(Pedido pedido) {
         pedido.setNumeroPedido(this.contador + "-" + LocalDate.now().getYear());
         return pedido;
@@ -174,7 +183,9 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "\n-----------------------------------------------------"
+        return "-----------------------------------------------------\n"
+                + "\t\t\t\t" + empresa.getNombre() + "\n" + empresa.getDireccion() + /*" " + ciudad + ", " + pais + */"\nTel: " + empresa.getTelefono() +
+        		"\n-----------------------------------------------------"
                 + "\nNumero Pedido: " + numeroPedido
                 + "\nFecha: " + fechaPedido + "\n"
                 + cliente

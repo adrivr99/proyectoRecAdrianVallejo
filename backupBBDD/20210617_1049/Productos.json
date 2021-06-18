@@ -1,0 +1,67 @@
+[ {
+  "producto" : 1,
+  "duracion" : 0.0,
+  "fechaFabricacion" : 1577833200000,
+  "fechaFin" : null,
+  "fechaInicio" : null,
+  "nombre" : "Iphone 12",
+  "peso" : 0.1,
+  "precio" : 699.99,
+  "tipo" : true,
+  "listaproductos" : [ ]
+}, {
+  "producto" : 2,
+  "duracion" : 0.0,
+  "fechaFabricacion" : 1552604400000,
+  "fechaFin" : null,
+  "fechaInicio" : null,
+  "nombre" : "Intel Core i7",
+  "peso" : 0.015,
+  "precio" : 350.0,
+  "tipo" : true,
+  "listaproductos" : [ ]
+}, {
+  "producto" : 3,
+  "duracion" : 0.0,
+  "fechaFabricacion" : 1558908000000,
+  "fechaFin" : null,
+  "fechaInicio" : null,
+  "nombre" : "Ryzen 5",
+  "peso" : 0.015,
+  "precio" : 275.99,
+  "tipo" : true,
+  "listaproductos" : [ ]
+}, {
+  "producto" : 4,
+  "duracion" : 2.0,
+  "fechaFabricacion" : null,
+  "fechaFin" : 1625176800000,
+  "fechaInicio" : 1625090400000,
+  "nombre" : "Piratear PlayStation 4",
+  "peso" : 0.0,
+  "precio" : 40.0,
+  "tipo" : false,
+  "listaproductos" : [ ]
+}, {
+  "producto" : 5,
+  "duracion" : 1.0,
+  "fechaFabricacion" : null,
+  "fechaFin" : 1624140000000,
+  "fechaInicio" : 1624053600000,
+  "nombre" : "Instalación Office 2016",
+  "peso" : 0.0,
+  "precio" : 10.0,
+  "tipo" : false,
+  "listaproductos" : [ ]
+}, {
+  "producto" : 6,
+  "duracion" : 5.0,
+  "fechaFabricacion" : null,
+  "fechaFin" : 1625522400000,
+  "fechaInicio" : 1625349600000,
+  "nombre" : "Montaje Ordenador",
+  "peso" : 0.0,
+  "precio" : 50.0,
+  "tipo" : false,
+  "listaproductos" : [ ]
+} ]

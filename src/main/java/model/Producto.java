@@ -167,6 +167,5 @@ public class Producto implements Serializable {
 	}
 	
 	
-	
 
 }
