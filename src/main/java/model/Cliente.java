@@ -97,7 +97,7 @@ public class Cliente implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		/*StringBuilder builder = new StringBuilder();
 		builder.append("Cliente [idCliente=");
 		builder.append(idCliente);
 		builder.append(", apellidos=");
@@ -108,10 +108,14 @@ public class Cliente implements Serializable {
 		builder.append(nif);
 		builder.append(", nombre=");
 		builder.append(nombre);
-		/*builder.append(", pedidos=");
+		builder.append(", pedidos=");
 		builder.append(pedidos);
-		builder.append("]");*/
-		return builder.toString();
+		builder.append("]");
+		return builder.toString();*/
+		return "-----------------------------------------------------\n"
+        + "ID Cliente: " + idCliente + ". Cliente: " + nombre + " " + apellidos + ", DNI:" + nif
+        + "\nDireccion Cliente: " + direccion + " \n"
+        + "-----------------------------------------------------\n";
 	}
 	
 	

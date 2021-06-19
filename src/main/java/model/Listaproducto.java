@@ -67,7 +67,7 @@ public class Listaproducto implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		/*StringBuilder builder = new StringBuilder();
 		builder.append("Listaproducto [id=");
 		builder.append(id);
 		builder.append(", cantidad=");
@@ -77,7 +77,9 @@ public class Listaproducto implements Serializable {
 		builder.append(", productoBean=");
 		builder.append(productoBean.getProducto());
 		builder.append("]");
-		return builder.toString();
+		return builder.toString();*/
+		return "\nIdPedido: " + id + " " + productoBean.getNombre() + " x " + productoBean.getPrecio() + "€‚ Cantidad: " + cantidad + " uds."
+        + "\n-----------------------------------------------------\n";
 	}
 	
 	

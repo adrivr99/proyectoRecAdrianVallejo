@@ -141,7 +141,7 @@ public class Producto implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		/*StringBuilder builder = new StringBuilder();
 		builder.append("Producto [producto=");
 		builder.append(producto);
 		builder.append(", duracion=");
@@ -160,10 +160,12 @@ public class Producto implements Serializable {
 		builder.append(precio);
 		builder.append(", tipo=");
 		builder.append(tipo);
-		/*builder.append(", listaproductos=");
+		builder.append(", listaproductos=");
 		builder.append(listaproductos);
-		builder.append("]");*/
-		return builder.toString();
+		builder.append("]");
+		return builder.toString();*/
+		return "Producto: " + producto + ", nombre: " + nombre + ", precio: " + precio;
+		
 	}
 	
 	

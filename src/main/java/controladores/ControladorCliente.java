@@ -54,10 +54,10 @@ public class ControladorCliente {
 		// En este caso es necesario iniciar una transacción en la base de datos
 		// porque vamos a persistir información en la misma
 		this.em.getTransaction().begin();
-		// merge(Objeto) - Si una entidad con el mismo identificador que v existe en el
+		// merge(Objeto) - Si una entidad con el mismo identificador que c existe en el
 		// contexto de persistencia (caché), se actualizan sus atributos y se devuelve
 		// como entidad gestionada
-		// Si el objeto v no existe en la base de datos, se comporta como persist() y la
+		// Si el objeto c no existe en la base de datos, se comporta como persist() y la
 		// entidad gestionada es la devuelta por merge(), por lo que v es una entidad desconectada
 		this.em.merge(c);
 		this.em.getTransaction().commit();

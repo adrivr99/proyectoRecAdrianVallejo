@@ -8,10 +8,12 @@ import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import model.Cliente;
 import model.Producto;
 import model.Pedido;
+import model.Listaproducto;
 import proyecto2.Empresa.*;
 
 public class ServicioLectura {
@@ -66,15 +68,35 @@ public class ServicioLectura {
     }
 
     // M�todo para generar un archivo JSON
-    public static void generarJSON(Empresa empresa, String directorio) throws IOException {
+    public static void generarJSONPedidos(List<Pedido> listaPedidos, String directorio) throws IOException {
         ObjectMapper mapeador = new ObjectMapper();
         mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
         mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Pedidos.json"),
-                empresa.getListaPedidos());
+                listaPedidos);
+    }
+    
+ // M�todo para generar un archivo JSON
+    public static void generarJSONClientes(List<Cliente> listaClientes, String directorio) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
         mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Clientes.json"),
-                empresa.getListaClientes());
+                listaClientes);
+    }
+    
+ // M�todo para generar un archivo JSON
+    public static void generarJSONProductos(List<Producto> listaProductos, String directorio) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
         mapeador.writeValue(new File("./backupBBDD/" + directorio + "/Productos.json"),
-                empresa.getListaProductos());
+                listaProductos);
+    }
+    
+    // M�todo para generar un archivo JSON
+    public static void generarJSONProductosPedidos(List<Listaproducto> listaPedidosProductos, String directorio) throws IOException {
+        ObjectMapper mapeador = new ObjectMapper();
+        mapeador.configure(SerializationFeature.INDENT_OUTPUT, true);
+        mapeador.writeValue(new File("./backupBBDD/" + directorio + "/ListaProductosPedidos.json"),
+                listaPedidosProductos);
     }
 
     // M�todo para leer un archivo JSON y devuelve una lista de pedidos

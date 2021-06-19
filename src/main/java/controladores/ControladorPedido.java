@@ -22,7 +22,7 @@ public class ControladorPedido {
 		// porque vamos a persistir información en la misma
 		this.em.getTransaction().begin();
 		// Se guarda el objeto en el contexto de persistencia (caché intermedia)
-		// c es una entidad conectada
+		// p es una entidad conectada
 		this.em.persist(p);
 		// Se vuelca la información del contexto (caché intermedia) en la base de datos
 		this.em.getTransaction().commit();
@@ -34,9 +34,9 @@ public class ControladorPedido {
 		this.em = entityManagerFactory.createEntityManager();
 		Pedido aux = null;
 		this.em.getTransaction().begin();
-		// Si v no es un objeto gestionado por el contexto de persistencia
+		// Si p no es un objeto gestionado por el contexto de persistencia
 		if (!this.em.contains(p)) {
-			// Carga c en el contexto de persistencia y se guarda en aux
+			// Carga p en el contexto de persistencia y se guarda en aux
 			aux = this.em.merge(p);
 		}
 		// Ahora se puede borrar usando aux, porque es una entidad gestionada por la
@@ -53,10 +53,10 @@ public class ControladorPedido {
 		// En este caso es necesario iniciar una transacción en la base de datos
 		// porque vamos a persistir información en la misma
 		this.em.getTransaction().begin();
-		// merge(Objeto) - Si una entidad con el mismo identificador que v existe en el
+		// merge(Objeto) - Si una entidad con el mismo identificador que p existe en el
 		// contexto de persistencia (caché), se actualizan sus atributos y se devuelve
 		// como entidad gestionada
-		// Si el objeto v no existe en la base de datos, se comporta como persist() y la
+		// Si el objeto p no existe en la base de datos, se comporta como persist() y la
 		// entidad gestionada es la devuelta por merge(), por lo que v es una entidad desconectada
 		this.em.merge(c);
 		this.em.getTransaction().commit();

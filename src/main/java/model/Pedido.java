@@ -133,7 +133,7 @@ public class Pedido implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
+		/*StringBuilder builder = new StringBuilder();
 		builder.append("Pedido [idPedido=");
 		builder.append(idPedido);
 		builder.append(", direccionCliente=");
@@ -148,10 +148,21 @@ public class Pedido implements Serializable {
 		builder.append(numeroPedido);
 		builder.append(", listaproductos=");
 		builder.append(listaproductos);
-		/*builder.append(", clienteBean=");
+		builder.append(", clienteBean=");
 		builder.append(clienteBean);
-		builder.append("]");*/
-		return builder.toString();
+		builder.append("]");
+		return builder.toString();*/
+		return "-----------------------------------------------------"
+        + "\nNumero Pedido: " + numeroPedido
+        + "\nFecha: " + fechaPedido + "\n"
+        + "-----------------------------------------------------\n"
+        + "Cliente: " + clienteBean.getNombre() + " " + clienteBean.getApellidos() + ", DNI:" + clienteBean.getNif()
+        + "\nDireccion Cliente: " + clienteBean.getDireccion() + " \n"
+        + "-----------------------------------------------------\n"
+        + listaproductos.toString()
+        + "\nForma de pago: " + formaPago
+        + "\nEnvio: " + envio
+        + "\n-----------------------------------------------------";
 	}
 	
 	

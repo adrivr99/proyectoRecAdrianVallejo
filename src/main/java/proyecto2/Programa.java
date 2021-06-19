@@ -135,8 +135,8 @@ public static void main(String[] args) throws IOException {
                                          cli.borrarCliente(clienteAux);
                                          cli.modifyCliente(cliente);
                                          // A�adimos el cliente a la lista Clientes en la posici�n del cliente modificado.
-                                         listaClientes.remove(clienteAux);
-                                         listaClientes.add(cliente);
+                                         listaClientes.clear();;
+                                         listaClientes = cli.findAll();
                                 	}
                                 }
                                 break;
@@ -330,15 +330,15 @@ public static void main(String[] args) throws IOException {
                                 System.out.println("-------Listado de Pedidos------");
                                 if (listaPedidos.isEmpty()) {
                                     System.out.println("No hay pedidos");
-                                } else {
+                                } else { 
                                     // Lista los pedidos de la listaPedidos
                                     listaPedidos.forEach(System.out::println);
                                     System.out.println("Elige un pedido de la lista para imprimir");
                                     teclado.nextLine();
-                                    int idPedido = teclado.nextInt();
+                                    String idPedido = teclado.nextLine();
                                     // Bucle for para buscar dentro de la listaPedidos el pedido buscado por teclado
                                     for (Pedido pedidoAux: listaPedidos) {
-                                        if (pedidoAux.getIdPedido() == idPedido) {
+                                        if (pedidoAux.getNumeroPedido().equalsIgnoreCase(idPedido)) {
                                             // Con el método generarTxt, generamos un archivo txt con los datos del
                                             // pedido
                                         	ServicioLectura.generarTxt(pedidoAux);
@@ -354,7 +354,7 @@ public static void main(String[] args) throws IOException {
                                     System.out.println("Pedido: " + listaPedidos.get(i).getNumeroPedido());
                                 }
                                 teclado.nextLine();
-                                System.out.println("Elige el pedido a modificar por su número de pedido");
+                                System.out.println("Elige el pedido a modificar por su numero de pedido");
                                 String pedidoModificar = teclado.nextLine();
                                 for (int i = 0; i < listaPedidos.size(); i++) {
                                     if (listaPedidos.get(i).getNumeroPedido().equalsIgnoreCase(pedidoModificar)) {
@@ -369,7 +369,7 @@ public static void main(String[] args) throws IOException {
                                 }
                                 break;
                             case 3:
-                                System.out.println("-------A�adir Pedido-------");
+                                System.out.println("-------A�adir Pedido-------");
                                 Pedido pedido = new Pedido();
                                 // Llamamos al método crearPedido para generar un pédido pidiendo todos los datos
                                 pedido = crearPedido(listaClientes, listaProductos);
@@ -383,24 +383,39 @@ public static void main(String[] args) throws IOException {
                                 
                                 pedido.setListaproductos(listaProductoAux);
                                 
-                                //listaPedidos.clear();
-                                System.out.println(pedido);
-                                //listaPedidos = ped.findAll();
+                                listaPedidos.clear();
+                                listaPedidos = ped.findAll();
+                                listaProductosPedido.clear();
+                                listaProductosPedido = lp.findAll();
                                 break;
                             case 4:
                                 System.out.println("-------Borrar Pedido-------");
                                 for (int i = 0; i < listaPedidos.size(); i++) {
-                                    System.out.println("Numero de Pedido: " + listaPedidos.get(i).getNumeroPedido());
+                                    System.out.println("ID Pedido: " + listaPedidos.get(i).getIdPedido() +", Numero de Pedido: " + listaPedidos.get(i).getNumeroPedido());
                                 }
                                 System.out.println("Elige un pedido para eliminar: ");
                                 teclado.nextLine();
-                                String pedidoDelete = teclado.nextLine();
-                                for (int i = 0; i < listaPedidos.size(); i++) {
-                                    if (listaPedidos.get(i).getNumeroPedido().equalsIgnoreCase(pedidoDelete)) {
-                                        listaPedidos.remove(i);
-                                        ped.borrarPedido(listaPedidos.get(i));
-                                    }
+                                int pedidoDelete = teclado.nextInt();
+                                for (Listaproducto lpAux : listaProductosPedido) {
+                                	for (Pedido pedidoAux : listaPedidos) {
+                                		if(pedidoAux.getIdPedido() == pedidoDelete) {
+                                			if(lpAux.getPedido().getIdPedido() == pedidoAux.getIdPedido()) {
+                                    			lp.borrarListaProducto(lpAux);
+                                    		}
+                                		}
+                            			
+                                	}
                                 }
+                                for (Pedido pedidoAux : listaPedidos) {
+                                	if(pedidoAux.getIdPedido() == pedidoDelete) {
+                                		ped.borrarPedido(pedidoAux);
+                                	}
+                                }
+                                listaPedidos.clear();
+                                listaPedidos = ped.findAll();
+                                listaProductosPedido.clear();
+                                listaProductosPedido = lp.findAll();
+                                
                                 break;
                             case 5:
                                 salirPedidos = true;
@@ -432,17 +447,29 @@ public static void main(String[] args) throws IOException {
                         } while (!exitCopias);
                         switch (opcionCopias) {
                             case 1:
-                            	empresa.setListaClientes(listaClientes);
-                                empresa.setListaPedidos(listaPedidos);
-                                empresa.setListaProductos(listaProductos);
+                            	listaClientes.clear();
+                            	listaClientes = cli.findAll();
+                            	listaProductos.clear();
+                            	listaProductos = pro.findAll();
+                            	listaPedidos.clear();
+                            	listaPedidos = ped.findAll();
+                            	listaProductosPedido.clear();
+                            	listaProductosPedido = lp.findAll();
                                 LocalDateTime fechaHoraActual = LocalDateTime.now();
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_hhmm");
                                 String directorio = fechaHoraActual.format(formatter);
                                 crearDirectorio("./backupBBDD/" + directorio);
+                                
+                                //ServicioLectura.generarJSONClientes(listaClientes, directorio);
+                                //ServicioLectura.generarJSONPedidos(listaPedidos, directorio);
+                                ServicioLectura.generarJSONProductos(listaProductos, directorio);
+                                //ServicioLectura.generarJSONProductosPedidos(listaProductosPedido, directorio);
                                 // Con el método generarJSON, crearemos un archivo JSON que guardará la lista de pedidos
                                 // pasandole la lista de pedidos y el directorio donde queremos que se guarde.
                                 
-                                ServicioLectura.generarJSON(empresa, directorio);
+                                //ServicioLectura.generarJSONPedidos(empresa, directorio);
+                                //ServicioLectura.generarJSONClientes(empresa, directorio);
+                                //ServicioLectura.generarJSONProductos(empresa, directorio);
                                 break;
                             case 2:
                                 System.out.println("-------Restaurar Copia de Seguridad-------");
@@ -456,6 +483,12 @@ public static void main(String[] args) throws IOException {
                                 empresa.getListaPedidos().clear();
                                 //System.out.println(empresa.toString());
                                 //System.out.println("---------------------");
+                                for (Listaproducto lpAux: listaProductosPedido) {
+                                	lp.borrarListaProducto(lpAux);
+                                }
+                                for (Cliente cAux: listaClientes) {
+                                	cli.borrarCliente(cAux);
+                                }
                                 listaProductos.clear();
                                 listaPedidos.clear();
                                 listaClientes.clear();
@@ -465,6 +498,7 @@ public static void main(String[] args) throws IOException {
                                 empresa.setListaProductos(listaProductos);
                                 empresa.setListaClientes(listaClientes);
                                 empresa.setListaPedidos(listaPedidos);
+                                
                                 break;
                             case 3:
                                 salirCopias = true;
